@@ -1,8 +1,8 @@
 {
-  "name": "com.unity.tiny.character.controller",
-  "displayName": "Tiny Character Controller",
-  "version": "0.7.0",
-  "unity": "2023.3",
+  "name": "com.pidev.character.controller",
+  "displayName": "Advanced Character Controller",
+  "version": "0.8.0",
+  "unity": "6000.1",
   "dependencies": {
     "com.unity.burst": "1.8.10",
     "com.unity.visualscripting": "1.9.1",
