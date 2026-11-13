@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.pidev.character.controller": {
+    "com.unity.tiny.character.controller": {
       "version": "file:com.utj.charactercontroller",
       "depth": 0,
       "source": "embedded",

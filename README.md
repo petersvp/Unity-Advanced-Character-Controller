@@ -1,8 +1,10 @@
-# Unity Advanced Character Controller
+# Composable Character Controller
 
-**Unity Advanced Character Controller** is a maintained fork of [Tiny Character Controller (Project_TCC)](https://github.com/unity3d-jp/Project_TCC), the Unity-Chan! project by Unity Technologies Japan. It builds on TCC's packages and examples to provide composable character movement and gameplay features. This fork will continue to be maintained and developed independently of the upstream project.
+**Composable Character Controller** is a maintained fork of [Tiny Character Controller (Project_TCC)](https://github.com/unity3d-jp/Project_TCC), the Unity-Chan! project by Unity Technologies Japan. It builds on TCC's packages and examples to provide composable character movement and gameplay features. This fork will continue to be maintained and developed independently of the upstream project.
 
-Most packages, component, and sample names still use `TCC` or `Project_TCC` because they originate from the upstream project, and this is most likely not going to be changed.
+While te public name of this fork is **Composable Character Controller**, its controller packages retains the upstream IDs, and its C# namespaces and assemblies still use `TinyCharacterController` for compatibility reasons. The bundled examples, Visual Scripting graphs, and tests refer to these identifiers, so retaining them keeps the existing project content working. `TCC` and `Project_TCC` names in the samples also identify their upstream origin.
+
+We decided to rebrand this project's public facing name, because "Tiny" led some developers to underestimate the asset’s quality.
 
 ## Upstream release history
 
@@ -12,14 +14,14 @@ Most packages, component, and sample names still use `TCC` or `Project_TCC` beca
 
 ## License notice
 
-- Unity Advanced Character Controller is licensed under the [Unity Companion License v1.3](https://unity.com/ja/legal/licenses/unity-companion-license), same as the upstream project.
+- ComposableCharacterController is licensed under the [Unity Companion License v1.3](https://unity.com/ja/legal/licenses/unity-companion-license), same as the upstream project.
 - Unity-Chan! character assets are licensed under [Unity-Chan License 2.0](https://unity-chan.com/contents/guideline_en/).
 - Some sound effects were made with [GameSynth](http://tsugi-studio.com/web/jp/products-gamesynth.html).
 - The Source Han Sans font is licensed by Adobe under the [SIL Open Font License v1.1](https://github.com/adobe-fonts/source-han-sans?tab=License-1-ov-file#License-1-ov-file).
 
 ---
 
-# Unity Advanced Character Controller guide
+# ComposableCharacterController guide
 
 ## Unity version used to develop the upstream project
 
