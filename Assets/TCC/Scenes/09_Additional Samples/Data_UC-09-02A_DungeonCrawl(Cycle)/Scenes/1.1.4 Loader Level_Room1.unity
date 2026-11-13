@@ -529,7 +529,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u90E8\u5C4B\u306B\u5165\u3063\u305F\u306E\u3067\u6575\u3092\u30ED\u30FC\u30C9\u3002\n\u30ED\u30FC\u30C9\u6642\u306B\u30C8\u30EA\u30AC\u30FC\u3092\u8E0F\u3093\u3060\u30D7\u30EC\u30A4\u30E4\u30FC\u3092\u4FDD\u6301\u3057\u3066\u3044\u308B\u306E\u3067\u3001\u30D7\u30EC\u30A4\u30E4\u30FC\u3092\u898B\u308B\u3002"
+  m_Text: "Now that you have entered the room, load the enemy.\nI keep the player who stepped on the trigger on load, so I see the player."
 --- !u!222 &1379007197
 CanvasRenderer:
   m_ObjectHideFlags: 0

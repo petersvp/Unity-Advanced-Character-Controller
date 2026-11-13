@@ -200,7 +200,7 @@ namespace Unity.TinyCharacterController.Check
         /// <param name="distance">distance from contact point</param>
         /// <param name="hitGameObject">contact object</param>
         /// <param name="direction">direction to reach the contact point</param>
-        /// <returns>接触の有無</returns>
+        /// <returns>Whether contact was detected.</returns>
         public bool HitCheck(out Vector3 point, out Vector3 normal, out float distance, out GameObject hitGameObject, out Vector3 direction)
         {
             return HitCheck(_aimTargetViewportPoint, 

@@ -13,7 +13,7 @@ namespace Unity.TinyCharacterController.Test
     public class LerpMoveControlTest : SceneTestBase
     {
         [UnityTest]
-        public IEnumerator Playで座標を更新する()
+        public IEnumerator PlayUpdatesPosition()
         {
             var control = FindComponent<LerpMoveControl>("Player");
             var pos = new Vector3(5, 0, 0);
@@ -35,7 +35,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator 途中でPriorityを失うと動作を停止する()
+        public IEnumerator LosingPriorityStopsPlayback()
         {
             var pos = new Vector3(5, 0, 0);
             var control = FindComponent<LerpMoveControl>("Player");
@@ -57,7 +57,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator 途中でPriorityを停止後にStopしても座標の補正は行わない()
+        public IEnumerator StoppingAfterPriorityLossDoesNotCorrectPosition()
         {
             var pos = new Vector3(5, 0, 0);
             var control = FindComponent<LerpMoveControl>("Player");
@@ -81,7 +81,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator Play中ならIsPlayingはTrue()
+        public IEnumerator IsPlayingDuringPlay()
         {
             var control = FindComponent<LerpMoveControl>("Player");
             control.SetTarget("Target-A", Vector3.zero);
@@ -96,7 +96,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator Play中にターゲットが変化しても影響しない()
+        public IEnumerator ChangingTheTargetDuringPlayHasNoEffect()
         {
             var control = FindComponent<LerpMoveControl>("Player");
             var id = new PropertyName("Target-A");
@@ -120,7 +120,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator 再生中のPlayと異なるIdをStopされても停止しない()
+        public IEnumerator StoppingDifferentPlayIdDoesNotStopCurrentPlay()
         {
             var control = FindComponent<LerpMoveControl>("Player");
             control.SetTarget("Target-A", Vector3.zero);
@@ -138,7 +138,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator 途中で他のPlayが実行された時は現在の座標からスタートする()
+        public IEnumerator StartingAnotherPlayUsesCurrentPosition()
         {
             var control = FindComponent<LerpMoveControl>("Player");
             control.SetTarget("Target-A", new Vector3(5, 0, 0));
@@ -166,7 +166,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [Test]
-        public void 登録されていないキーをPlayするとエラー()
+        public void ErrorWhenPlayingAnUnregisteredKey()
         {
             var control = FindComponent<LerpMoveControl>("Player");
 
@@ -176,7 +176,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator Cancelで処理を停止()
+        public IEnumerator CancelStopsPlayback()
         {
             var control = FindComponent<LerpMoveControl>("Player");
             control.SetTarget("Target-A", new Vector3(10, 0, 0));
@@ -192,7 +192,7 @@ namespace Unity.TinyCharacterController.Test
                 yield return null;
             }
             
-            // 最後のフレームが反映されないので4で停止
+            // Stop at 4 because the final frame is not applied
             Assert.That(control.transform.position,
                 Is.EqualTo(new Vector3(4.9f, 0, 0)).Using(Vector3EqualityComparer.Instance));
 
@@ -201,7 +201,7 @@ namespace Unity.TinyCharacterController.Test
         
 
         [UnityTest]
-        public IEnumerator Play中は座標は移動しない()
+        public IEnumerator PlayDoesNotMovePosition()
         {
             var control = FindComponent<LerpMoveControl>("Player");
             control.SetTarget("Target-A", Vector3.zero);
@@ -218,7 +218,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator Lerpで指定の座標へ移動する()
+        public IEnumerator MoveToSpecifiedCoordinatesWithLerp()
         {
             var control = FindComponent<LerpMoveControl>("Player");
             control.SetTarget("Target-A", Vector3.zero);

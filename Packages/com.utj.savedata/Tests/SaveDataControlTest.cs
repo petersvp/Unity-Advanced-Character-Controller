@@ -30,7 +30,7 @@ namespace Unity.SaveData.Test
         }
         
         [UnityTest]
-        public IEnumerator データを保存する()
+        public IEnumerator SaveData()
         {
             var saveDataControl = FindComponent<SaveDataControl>("SaveControl_1");
             saveDataControl.Save(FolderName);
@@ -41,7 +41,7 @@ namespace Unity.SaveData.Test
         }
 
         [Test]
-        public void ファイルがない場合は初期値を使う()
+        public void UseInitialValueIfFileDoesNotExist()
         {
             var saveDataControl = FindComponent<SaveDataControl>("SaveControl_1");
             
@@ -55,7 +55,7 @@ namespace Unity.SaveData.Test
         }
 
         [Test]
-        public void データをロードする()
+        public void LoadData()
         {
             var saveDataControl = FindComponent<SaveDataControl>("SaveControl_1");
             var nameContainer = saveDataControl.GetContainerT<StringContainer>("Name");
@@ -80,7 +80,7 @@ namespace Unity.SaveData.Test
         }
 
         [Test]
-        public void 別のオブジェクトに割り当てる()
+        public void AssignToAnotherObject()
         {
             var saveDataControl1 = FindComponent<SaveDataControl>("SaveControl_1");
             var saveDataControl2 = FindComponent<SaveDataControl>("SaveControl_2");
@@ -99,7 +99,7 @@ namespace Unity.SaveData.Test
         }
 
         [Test]
-        public void 異なる構造のオブジェクトに割り当てる()
+        public void AssignToObjectsOfDifferentStructures()
         {
             var saveDataControl1 = FindComponent<SaveDataControl>("SaveControl_1");
             var saveDataControl2 = FindComponent<SaveDataControl>("SaveControl_3");

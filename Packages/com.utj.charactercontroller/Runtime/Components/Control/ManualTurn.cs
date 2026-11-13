@@ -8,8 +8,8 @@ using UnityEngine.Serialization;
 namespace Unity.TinyCharacterController.Control
 {
     /// <summary>
-    /// キャラクターの向きを手動で設定するコンポーネント
-    /// ManualControl推奨
+    /// Component for setting the character's facing direction manually.
+    /// ManualControl is recommended.
     /// </summary>
     [Obsolete("Recommends Manual Control")]
     [AddComponentMenu(MenuList.MenuControl + nameof(ManualTurn))]
@@ -24,7 +24,7 @@ namespace Unity.TinyCharacterController.Control
 
         [FormerlySerializedAs("_turnPriority")]
         [Space]
-        [Header("キャラクターの向きの設定")]
+        [Header("Character Facing Direction")]
         [SerializeField]
         public int TurnPriority;
 

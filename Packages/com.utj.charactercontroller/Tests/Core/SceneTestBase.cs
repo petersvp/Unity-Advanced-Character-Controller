@@ -47,7 +47,7 @@ public abstract class SceneTestBase : IPrebuildSetup, IPostBuildCleanup
         yield return null;
         
         var scene = SceneManager.GetSceneByPath(ScenePath);
-        Assert.That(scene.isLoaded, Is.True, "シーンのロードに失敗しています");
+        Assert.That(scene.isLoaded, Is.True, "Failed to load the scene.");
     }
    
     

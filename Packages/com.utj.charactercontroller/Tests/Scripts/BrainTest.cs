@@ -19,7 +19,7 @@ namespace Unity.TinyCharacterController.Test
         };
         
         [UnityTest]
-        public IEnumerator 移動しない([ValueSource(nameof(BrainNames))]string brainName)
+        public IEnumerator DoesNotMove([ValueSource(nameof(BrainNames))]string brainName)
         {
             var control = GetObjectAndComponentInRoot<ManualControl>(brainName);
             
@@ -38,7 +38,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator 移動([ValueSource(nameof(BrainNames))]string brainName)
+        public IEnumerator Movement([ValueSource(nameof(BrainNames))]string brainName)
         {
             var control = GetObjectAndComponentInRoot<ManualControl>(brainName);
             control.gameObject.SetActive(true);
@@ -57,7 +57,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator 即回転([ValueSource(nameof(BrainNames))]string brainName)
+        public IEnumerator RotatesImmediately([ValueSource(nameof(BrainNames))]string brainName)
         {
             var control = GetObjectAndComponentInRoot<ManualControl>(brainName);
             control.gameObject.SetActive(true);
@@ -75,7 +75,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator 回転([ValueSource(nameof(BrainNames))]string brainName)
+        public IEnumerator Rotation([ValueSource(nameof(BrainNames))]string brainName)
         {
             var control = GetObjectAndComponentInRoot<ManualControl>(brainName);
             control.gameObject.SetActive(true);
@@ -93,7 +93,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator ワープ([ValueSource(nameof(BrainNames))]string brainName)
+        public IEnumerator Warp([ValueSource(nameof(BrainNames))]string brainName)
         {
             var control = GetObjectAndComponentInRoot<ManualControl>(brainName);
             control.gameObject.SetActive(true);
@@ -113,7 +113,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator ワープ移動([ValueSource(nameof(BrainNames))]string brainName)
+        public IEnumerator WarpMovement([ValueSource(nameof(BrainNames))]string brainName)
         {
             var control = GetObjectAndComponentInRoot<ManualControl>(brainName);
             control.gameObject.SetActive(true);
@@ -135,7 +135,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator ワープ移動の途中で障害物CharacterBrain()
+        public IEnumerator WarpMovementHitsObstacleWithCharacterBrain()
         {
             var control = GetObjectAndComponentInRoot<ManualControl>("CharacterBrain");
             control.gameObject.SetActive(true);
@@ -151,7 +151,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator ワープ移動の途中で障害物RigidBodyBrain()
+        public IEnumerator WarpMovementHitsObstacleWithRigidbodyBrain()
         {
             var control = GetObjectAndComponentInRoot<ManualControl>("CharacterBrain");
             control.gameObject.SetActive(true);
@@ -167,7 +167,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator ワープ移動の途中で障害物TransformBrain()
+        public IEnumerator WarpMovementHitsObstacleWithTransformBrain()
         {
             var control = GetObjectAndComponentInRoot<ManualControl>("TransformBrain");
             control.gameObject.SetActive(true);

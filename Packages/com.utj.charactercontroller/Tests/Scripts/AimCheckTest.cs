@@ -14,7 +14,7 @@ namespace Unity.TinyCharacterController.Test
         
 
         [UnityTest]
-        public IEnumerator キャラクターが持つコライダーと接触しない()
+        public IEnumerator DoesNotHitOwnCollider()
         {
             var aimCheck = FindComponent<AimCheck>("Player_1");
             var hitWall = GameObject.Find("Wall_1");
@@ -27,7 +27,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator 視点を移動する()
+        public IEnumerator MovesViewpoint()
         {
             var aimCheck = FindComponent<AimCheck>("Player_1");
             var hitWall = GameObject.Find("Wall_2");
@@ -41,7 +41,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator 何もない場所をみる()
+        public IEnumerator LooksAtEmptySpace()
         {
             var aimCheck = FindComponent<AimCheck>("Player_1");
 
@@ -54,7 +54,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator 視点を変えて視点先のオブジェクトを変える()
+        public IEnumerator ChangingViewpointChangesTargetObject()
         {
             var aimCheck = FindComponent<AimCheck>("Player_1");
             var preHitWall = GameObject.Find("Wall_1");
@@ -77,7 +77,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator 視点を変えて何もない場所をみる()
+        public IEnumerator ChangingViewpointLooksAtEmptySpace()
         {
             var aimCheck = FindComponent<AimCheck>("Player_1");
             var preHitWall = GameObject.Find("Wall_1");
@@ -97,7 +97,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator 視点を変えた後に変化しない()
+        public IEnumerator TargetDoesNotChangeAfterMovingViewpoint()
         {
             var aimCheck = FindComponent<AimCheck>("Player_1");
             var preHitWall = GameObject.Find("Wall_1");
@@ -115,7 +115,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator 視点の先にオブジェクトがない()
+        public IEnumerator NoObjectInViewDirection()
         {
             var aimCheck = FindComponent<AimCheck>("Player_1");
             var hitWall = GameObject.Find("Wall_1");
@@ -132,7 +132,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator プレイヤーからみて視界を遮蔽される()
+        public IEnumerator TargetOccludedFromPlayer()
         {
             var aimCheck = FindComponent<AimCheck>("Player_1");
             var hitWall = GameObject.Find("Wall_2");
@@ -146,7 +146,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator プレイヤーからみて視界を遮蔽されるがIsUseAimParallaxはFalse()
+        public IEnumerator TargetOccludedFromPlayerWithAimParallaxDisabled()
         {
             var aimCheck = FindComponent<AimCheck>("Player_1");
             var hitWall = GameObject.Find("Wall_1");
@@ -161,7 +161,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator 視界の範囲を下げる()
+        public IEnumerator ReducesViewRange()
         {
             var aimCheck = FindComponent<AimCheck>("Player_1");
             aimCheck.MaxRange = 1;

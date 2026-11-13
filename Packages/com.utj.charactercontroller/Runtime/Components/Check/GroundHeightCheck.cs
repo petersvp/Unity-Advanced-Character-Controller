@@ -13,12 +13,12 @@ namespace Unity.TinyCharacterController.Check
         IGroundContact
     {
         /// <summary>
-        /// 地面の高さ
+        /// Ground height
         /// </summary>
         public float GroundHeight;
 
         /// <summary>
-        /// 接地したと判断される遊びの高さ。
+        /// Tolerance used when determining ground contact.
         /// </summary>
         [SerializeField] 
         private float _toleranceHeight;
@@ -44,7 +44,7 @@ namespace Unity.TinyCharacterController.Check
         {
             Gizmos.color = GetGizmosColor();
             
-            // 地面を描画
+            // Draw the ground
             var position = transform.position;
             var groundPos = new Vector3(position.x, GroundHeight, position.z);
             Gizmos.DrawCube(groundPos, new Vector3(5, 0, 5));

@@ -1,25 +1,25 @@
-# 独自のコントロールの作成
+# Creating your own controls
 
-TCCでは、以下のインターフェースを継承することで機能を追加します。
+In TCC, you add functionality by implementing the following interfaces.
 
-|インターフェース|内容|
+| Interface | Purpose |
 |---|---|
-|IMove | キャラクターの移動ベクトルを指定する。 |
-|ITurn | キャラクターの向きと更新速度を指定する。 |
-|IPriorityLifecycle<IMove> | IMoveのプライオリティが高い時の動作。 |
-|IPriorityLifecycle<ITurn> | ITurnのプライオリティが高い時の動作。 |
-|IEarlyUpdateComponent | Brainのタイミングに依存するコンポーネントの更新処理。<br>ExecuteOrder=0のUpdateより前に実行する。<br>Brainが停止中は動作を停止する。 |
-|IUpdateComponent| Brainのタイミングに依存するコンポーネントの更新処理<br>ExecuteOrder=0のUpdateより後に実行する。<br>Brainが停止中は動作を停止する。|
+| `IMove` | Specifies the character's movement vector. |
+| `ITurn` | Specifies the character's facing direction and turn speed. |
+| `IPriorityLifecycle<IMove>` | Defines behavior when this `IMove` has the highest priority. |
+| `IPriorityLifecycle<ITurn>` | Defines behavior when this `ITurn` has the highest priority. |
+| `IEarlyUpdateComponent` | Updates a component according to the Brain's timing, before `Update` at `ExecuteOrder = 0`. Stops updating while the Brain is stopped. |
+| `IUpdateComponent` | Updates a component according to the Brain's timing, after `Update` at `ExecuteOrder = 0`. Stops updating while the Brain is stopped. |
 
 
-## キャラクターの移動
+## Character movement
 
-ここではプライオリティを利用したキャラクターの移動制御を学びます。
+This section shows how to control character movement with priorities.
 
-キャラクターの移動を実現するControlを作成します。このControlでは、WASDでキャラクターは平行移動し、QEで上下に移動します
+Create a `Control` that moves the character horizontally with WASD and vertically with Q and E.
 
 
-まず `MyControl` クラスを作成します。
+First, create a `MyControl` class.
 
 ```cs
 public class MyControl : MonoBehaviour
@@ -36,11 +36,11 @@ public class MyControl : MonoBehaviour
 }
 ```
 
-キャラクターの移動処理を実装するため `IMove` を継承します。このインターフェースでは移動のプライオリティと、プライオリティが最も高かった時に使用する移動ベクトルを設定します。
+Implement `IMove` to control movement. This interface specifies movement priority and the velocity used when this component has the highest priority.
 
-`MoveHorizontal()` と `MoveVertical()` で入力内容を受け取り、`MoveVelocity` の計算に使用します。またカメラの入力方向を使用するため、`CharacterSettings.CameraYawRotation` でキャラクターの移動ベクトルをスクリーンを考慮した方向へ補正します。
+`MoveHorizontal()` and `MoveVertical()` receive input for the `MoveVelocity` calculation. `CharacterSettings.CameraYawRotation` rotates the movement vector to account for the camera's direction.
 
-このコンポーネントを設定することで、 `Priority` が他のコンポーネントより高い間は入力に沿って移動します。
+With this component attached, the character follows the input while its `Priority` is higher than that of other movement components.
 
 ```cs
 public class MyControl : MonoBehaviour, IMove
@@ -57,13 +57,13 @@ public class MyControl : MonoBehaviour, IMove
         TryGetComponent(out _settings);
     }
 
-    // 平行移動の入力
+    // Horizontal movement input
     public void MoveHorizontal(Vector2 input)
     {
         _inputVelocity = new Vector3(input.x, _inputVelocity.y, input.y);
     }
 
-    // 垂直移動の入力
+    // Vertical movement input
     public void MoveVertical(float input)
     {
         _inputVelocity.y = input;
@@ -76,9 +76,9 @@ public class MyControl : MonoBehaviour, IMove
 }
 ```
 
-次にこのコンポーネントが有効の間は重力を無視するようにします。具体的には`IPriorityLifecycle<IMove>`を継承し、コンポーネントがプライオリティで最高値になった際、あるいは最高値を失った際のコールバックを受け取ります。
+Next, ignore gravity while this component controls movement. Implement `IPriorityLifecycle<IMove>` to receive callbacks when it gains or loses the highest movement priority.
 
- `Gravity` コンポーネントを取得し、`OnAcquireHighestPriority`のタイミングでGravityを無効、`OnLoseHighestPriority`のタイミングで失効したGravityを再開します。
+Get the `Gravity` component, disable it in `OnAcquireHighestPriority`, and re-enable it in `OnLoseHighestPriority`.
 
 ```cs
 public class MyControl : MonoBehaviour, IMove, IPriorityLifecycle<IMove>
@@ -87,14 +87,14 @@ public class MyControl : MonoBehaviour, IMove, IPriorityLifecycle<IMove>
     public int Priority = 0;
     private Vector3 _inputVelocity;
 
-    private Gravity _gravity;// <- new
+    private Gravity _gravity; // New
 
     private CharacterSettings _settings;
 
     private void Awake()
     {
         TryGetComponent(out _settings);
-        TryGetComponent(out _gravity); // <- new
+        TryGetComponent(out _gravity); // New
     }
 
     public void MoveHorizontal(Vector2 input)
@@ -126,20 +126,20 @@ public class MyControl : MonoBehaviour, IMove, IPriorityLifecycle<IMove>
 }
 ```
 
-## キャラクターのダッシュ
+## Character dash
 
-ここではプライオリティを利用した向きの更新や、プライオリティ自体の更新について学びます。
+This section shows how to use priorities to update facing direction and how to change a priority over time.
 
-キャラクターのダッシュの動きを実現するControlを作成します。これは他のControlの影響を受けず、一定方向へ高速移動を行うControlです。
+Create a dash `Control` that moves quickly in a fixed direction without interference from other controls.
 
-`Input(...)`でダッシュするべき移動方向を設定し、`Dash()` で現在のキャラクターの入力方向へダッシュします。
+Use `Input(...)` to set the intended dash direction; call `Dash()` to dash in the character's current input direction.
 
 ```cs
 public class DashControl : MonoBehaviour
 {
     [Header("Settings")]
-    public float DashSpeed = 14;        // ダッシュの移動速度
-    public float DashDuration = 0.5f;   // ダッシュの移動時間
+    public float DashSpeed = 14;        // Dash movement speed
+    public float DashDuration = 0.5f;   // Dash duration
     
     public void Input(Vector2 input)
     {
@@ -151,10 +151,10 @@ public class DashControl : MonoBehaviour
 }
 ```
 
-ダッシュの処理を実装します。 `IMove` を継承してプライオリティが最も高い時のみ移動する処理を実装しますが、そのプライオリティはダッシュ中のみ有効になるようにします。
+Implement the dash with `IMove`, so it supplies movement only when its priority is highest. Make that priority active only while dashing.
 
-また ` IUpdateComponent` を継承し、` IUpdateComponent.OnUpdate(...)` でダッシュの速度を減速します。このUpdateはUnity標準のUpdateと異なり、Brainの実行タイミングによって FixedUpdate もしくは Update で動作します。
-この`IUpdateComponent`の実行順は `IUpdateComponent.Order` で指定します。例えば他の `IUpdateComponent` の実行結果を使用したい場合、Orderを増やしてタイミングを制御します。
+Implement `IUpdateComponent` and slow the dash in `IUpdateComponent.OnUpdate(...)`. Unlike Unity's standard `Update`, this callback runs in `FixedUpdate` or `Update` according to the Brain's timing.
+Set its execution order with `IUpdateComponent.Order`. For example, increase `Order` if this component must use the result of another `IUpdateComponent`.
 
 
 ```cs
@@ -167,13 +167,13 @@ public class DashControl : MonoBehaviour, IMove, IUpdateComponent
     public float DashSpeed = 14;
     public float DashDuration = 0.5f;
     
-    private IWallCheck _wallCheck; // 壁との接触判定
+    private IWallCheck _wallCheck; // Wall contact check
     private CharacterSettings _settings;
 
-    private Vector3 _direction; // ダッシュの方向
-    private float _currentSpeed; // 現在のダッシュの速度
-    private float _dashEndTime; // ダッシュが終了する時間
-    private Vector2 _input; // 入力内容のキャッシュ
+    private Vector3 _direction; // Dash direction
+    private float _currentSpeed; // Current dash speed
+    private float _dashEndTime; // Time when the dash ends
+    private Vector2 _input; // Cached input
 
     private void Awake()
     {
@@ -188,34 +188,34 @@ public class DashControl : MonoBehaviour, IMove, IUpdateComponent
 
     public void Dash()
     {
-        // 移動方向が指定されていなければダッシュしない
+        // Do not dash without a movement direction
         if (_input.sqrMagnitude < 0.5f)
             return;
 
-        // ダッシュの方向を設定
+        // Set the dash direction
         _direction = _settings.CameraYawRotation * new Vector3(_input.x, 0, _input.y);
 
-        // ダッシュの速度を設定
+        // Set dash speed
         _currentSpeed = DashSpeed;
         _dashEndTime = Time.time + DashDuration;
     }
 
-    // ダッシュが有効な間のみプライオリティを有効にする
+    // Enable this priority only while dashing
     int IPriority<IMove>.Priority => _dashEndTime > Time.time ? MovePriority : 0;
 
     Vector3 IMove.MoveVelocity => _direction * _currentSpeed;
     
     void IUpdateComponent.OnUpdate(float deltaTime)
     {
-        // ダッシュ中のみ処理する
+        // Run only while dashing
         if (_dashEndTime < Time.time)
             return;
 
-        // 壁に当たったら停止する
+        // Stop on contact with a wall
         if (_wallCheck.IsContact)
             Stop();
         
-        // DashDurationのタイミングで減速が完了するように速度を遅くする。
+        // Slow down so the dash reaches zero speed after DashDuration.
         _currentSpeed = Mathf.MoveTowards(_currentSpeed, 0, deltaTime * DashSpeed / DashDuration);
     }
 
@@ -229,9 +229,9 @@ public class DashControl : MonoBehaviour, IMove, IUpdateComponent
 }
 ```
 
-最後にダッシュ中はキャラクターの向きダッシュ方向へ向くようにします。
+Finally, make the character face the dash direction while dashing.
 
-キャラクターの向きは `ITurn` で設定します。 `IMove` と同様にプライオリティで動作し、`YawAngle` でキャラクターが向くべき方向を、`TurnSpeed` でキャラクターの向きの更新速度を指定します。なお `TurnSpeed` が -1 の場合、キャラクターは即座に指定の方向を向きます。
+Set facing direction through `ITurn`. Like `IMove`, it works by priority. `YawAngle` gives the target direction; `TurnSpeed` specifies how quickly the character turns. With `TurnSpeed` set to `-1`, the character faces the target direction immediately.
 
 
 ```cs
@@ -309,15 +309,15 @@ public class DashControl : MonoBehaviour, IMove, IUpdateComponent, ITurn
 }
 ```
 
-## 指定座標への移動
+## Movement to a specified position
 
-他のEffectやControlの影響を受けない `IWarp` による移動について紹介します。
-`IWarp` は特定の座標へキッチリと到達したい場合に有効です。また `IWarp.Warp(...)` では障害物を考慮しませんが、 `IWarp.Move(...)` では移動の中間点を考慮します。考慮内容はBrainに依存します。
-`IWarp` で移動した場合、そこで指定した座標は他のControlやEffectより優先されます。またEffectの内容をリセットします。
+This section introduces `IWarp` movement, which is unaffected by other Effects or Controls.
+`IWarp` is useful when the character must reach a precise position. `IWarp.Warp(...)` ignores obstacles, while `IWarp.Move(...)` considers intermediate positions; the exact behavior depends on the Brain.
+Positions set through `IWarp` take precedence over other Controls and Effects, and reset the Effects' state.
 
-`ITransform`はTransformの内容をキャッシュし使用するコンポーネントです。フレームの最初にTransformの内容をキャッシュし、その値を使用します。また値を設定した場合、即座に反映します。
+`ITransform` caches Transform data at the start of each frame and exposes those cached values. Values assigned through it take effect immediately.
 
-以下は二点の座標を一定時間で往復するコンポーネントです。
+The following component moves between two positions over a fixed duration.
 
 ```cs
 public class WarpControl : MonoBehaviour, IMove, IPriorityLifecycle<IMove>

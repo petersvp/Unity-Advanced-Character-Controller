@@ -1,82 +1,82 @@
-# My First TCC チュートリアル
+# My First TCC Tutorial
 
-このチュートリアルでは、TCCを利用したゲームシーンのセットアップから、プレイヤーの操作、重力やジャンプなどの挙動の追加、そしてControlのプライオリティの切り替えによる挙動の変化など、TCCの根幹となる内容を学びます。
+This tutorial covers the basics of TCC: setting up a game scene, controlling a player, adding gravity and jumping, and changing behavior by switching the priority of `Control` components.
 
-## 参考ムービー
-[![](https://img.youtube.com/vi/qSAUngXAQkI/0.jpg)](https://www.youtube.com/watch?v=qSAUngXAQkI)
+## Reference video
 
+[![My First TCC video](https://img.youtube.com/vi/qSAUngXAQkI/0.jpg)](https://www.youtube.com/watch?v=qSAUngXAQkI)
 
-## 1.新しいシーンの作成
+## 1. Create a new scene
 
--  UnityのメインメニューからFile > New Sceneを選択して、新しいシーンを作成します。シーンにはNewSceneという名前をつけましょう。
--  ヒエラルキーパネルで右クリックし、Folderを選択してから、新しく作成された空のオブジェクトの名前をLevelに変更します。これは、ワールドを構成を管理するためのコンテナとなります。
--  Levelオブジェクトの下に、平面を表すPlaneオブジェクトを追加します。この平面がゲームの地面となります。PlaneのTransformの座標を(0,0,0)に設定して、中心に配置します。
--  Levelオブジェクトの下にDirectionalLightを移動します。
+- Choose `File > New Scene` from Unity's main menu. Name the new scene `NewScene`.
+- Right-click in the Hierarchy and choose `Folder`. Rename the new empty object `Level`; it will contain the objects that make up the world.
+- Add a `Plane` under `Level` to serve as the ground. Set its Transform position to `(0, 0, 0)`.
+- Move `DirectionalLight` under `Level`.
 
->Folderの階層下に配置したオブジェクトはゲームのビルド時（あるいはゲームの再生時）にルートに再配置されます。
+> Objects placed under a `Folder` are moved back to the root when the game is built or played.
 
-## 2.Playerの作成
+## 2. Create the player
 
-- ヒエラルキーで右クリックし、Create Emptyを選択して新しいGameObjectを作成します。このGameObjectの名前をPlayerに変更し、Transformの座標を(0,0,0)に設定します。
--  Playerオブジェクトの子として、Capsuleオブジェクトを作成し、これをキャラクターのモデルとして使用します。CapsuleのTransformの座標を(0, 1, 0)に設定して、地面から適切な高さに配置します。
--  同様に、Playerオブジェクトの子としてSphereオブジェクトを追加し、これをキャラクターの頭部または視覚的なアクセントとして使用します。SphereのTransformの座標を(0, 1.4, 0.5)に設定します。
--  次に、プレイヤーの入力を処理するために、PlayerにPlayerInputコンポーネントを追加します。Create Actionsボタンを押して新しいInputActionAssetを作成し、プレイヤーの操作を設定します。
--  CharacterBrainコンポーネントを追加します。これによりTCCのベクトルの管理対象をCharacterControllerとします。
--  キャラクターのサイズや設定を管理するためのCharacterSettingsコンポーネントを選択し、Radiusを0.6、Heightを2に設定して、キャラクターの形状に合わせます。
+- Right-click in the Hierarchy, choose `Create Empty`, name the new GameObject `Player`, and set its Transform position to `(0, 0, 0)`.
+- Add a `Capsule` as a child of `Player` to serve as the character model. Set its Transform position to `(0, 1, 0)`.
+- Add a `Sphere` as another child, for a head or visual accent. Set its position to `(0, 1.4, 0.5)`.
+- Add `PlayerInput` to `Player`. Click `Create Actions` to create an `InputActionAsset`, then configure the player's controls.
+- Add `CharacterBrain`. This makes the `CharacterController` the target that TCC uses to apply movement vectors.
+- Add `CharacterSettings` to manage the character's size. Set `Radius` to `0.6` and `Height` to `2` to match the model.
 
-## 3.キャラクターに移動処理を追加
+## 3. Add character movement
 
-最も単純なキャラクターの移動処理を追加します。
+Add the simplest form of character movement:
 
--  PlayerにMoveControlスクリプトを追加します。これは、プレイヤーの移動を制御するカスタムスクリプトです。
--  ScriptMachineコンポーネントをPlayerに追加し、このコンポーネントでEdit Graphボタンを押して、ビジュアルスクリプティング環境を開きます。
--  グラフビュー内で、プレイヤーの入力に応じて移動処理を行うためのノードを配置し設定します。具体的には、OnInputSystemEventVector2ノードを使用して入力イベントを捉え、それをMoveControlの移動ロジックに接続します。
-    -  OnInputSystemEventVector2ノードを追加。動作のタイミングはOnHold、InputActionはMoveを指定。
-    -  MoveControlのMoveを追加し、OnInputSystemEventVector2のタイミングで動作するように接続。また入力結果も接続する。
-    -  OnInputSystemEventVector2ノードを追加。動作のタイミングはOnRelease、InputActionはMoveを指定。
-    -  同様に、MoveControlのMoveを追加し追加したノードに接続。
+- Add `MoveControl` to `Player`. This component controls the player's movement.
+- Add a `ScriptMachine` to `Player` and click `Edit Graph` to open Visual Scripting.
+- In the graph, capture input with `OnInputSystemEventVector2` and pass it to `MoveControl.Move`:
+  - Add `OnInputSystemEventVector2` with timing `OnHold` and Input Action `Move`.
+  - Connect its flow and input value to `MoveControl.Move`.
+  - Add another `OnInputSystemEventVector2` with timing `OnRelease` and Input Action `Move`.
+  - Connect it to another `MoveControl.Move` node so that movement updates when the input is released.
 
->Tips : キャラクターの移動方向はスクリーンの方向を参考に変化します。
+> **Tip:** Character movement changes relative to the direction of the screen.
 
-## 4.重力の追加
+## 4. Add gravity
 
-キャラクターに重力などのエフェクトを追加します。
+Add effects such as gravity:
 
--  PlayerにGravityを追加します。
--  Gravityの地面との衝突判定で利用するために、GroundCheckまたはGroundHeightCheckスクリプトをPlayerに追加します。
-    -  GroundCheck : Physicsを利用した地面との接地判定を行う。
-    -  GroundHeightCheck : 座標と想定する地面の高さで地面との接地判定を行う。
+- Add `Gravity` to `Player`.
+- Add `GroundCheck` or `GroundHeightCheck` to `Player` so that `Gravity` can detect the ground:
+  - `GroundCheck` uses physics to detect ground contact.
+  - `GroundHeightCheck` compares the character's position with an assumed ground height.
 
->Tips : GroundCheckではなくGroundHeightCheckを使用した場合、地形の外に移動しても落下することはありません。
-    
-## 5.ジャンプの処理を追加
+> **Tip:** If you use `GroundHeightCheck` instead of `GroundCheck`, the character will not fall when moving beyond the edge of the terrain.
 
-Move以外のControlを追加します。
+## 5. Add jumping
 
--  プレイヤーがジャンプできるようにするため、PlayerにJumpControlスクリプトを追加します。
--  頭上の障害物の検出にはHeadContactCheckまたはReachHeightCheckスクリプトを使用します。
--  グラフビュー内で、プレイヤーの入力に応じて移動処理を行うためのノードを配置し設定します。具体的には、OnInputSystemEventButtonノードを使用して入力イベントを捉え、それをJumpControlのロジックに接続します。
-    -  OnInputSystemEventButtonノードを追加。動作のタイミングはOnPressed、InputActionはFireを指定。
-    -  追加したノードにJumpControlのJumpを設定。
+Add another `Control` component alongside `MoveControl`:
 
->Tips : TCCはオールインワンの全てが揃う機能ではなく、組み合わせて挙動を実装します。
+- Add `JumpControl` to `Player`.
+- Add `HeadContactCheck` or `ReachHeightCheck` to detect obstacles above the player.
+- In the Visual Scripting graph, capture the input with `OnInputSystemEventButton` and connect it to `JumpControl.Jump`:
+  - Add `OnInputSystemEventButton` with timing `OnPressed` and Input Action `Fire`.
+  - Connect it to a `JumpControl.Jump` node.
 
-## 6.常に特定のオブジェクトを向く処理の追加
+> **Tip:** TCC is not an all-in-one behavior. Combine its components to build the behavior you need.
 
-シーン内にTargetオブジェクトを追加し、プレイヤーが常にこのオブジェクトを向くようにします。
+## 6. Make the player face a target at all times
 
--  Sphereオブジェクトを追加し、Transformコンポーネントの座標に(0, 0.5, 3)を指定します。またSphereColliderコンポーネントのIsTriggerにチェックを入れ、Radiusを5に設定します。
--  PlayerにLookTargetControlコンポーネントを指定し、LookTargetControlコンポーネントのTargetに、先ほど作成したSphereを設定します。
--  LookTargetControlのプライオリティを10に設定します。
+Add a `Target` object to the scene and make the player always face it:
 
->Tips : プライオリティを利用してキャラクターの移動量、もしくは向きを上書きします。
+- Add a `Sphere` at `(0, 0.5, 3)`. Enable `Is Trigger` on its `SphereCollider` and set the collider radius to `5`.
+- Add `LookTargetControl` to `Player` and assign the sphere as its `Target`.
+- Set the priority of `LookTargetControl` to `10`.
 
-## 7.近づいた時だけ特定のオブジェクトを向く処理の追加
+> **Tip:** Priority lets one component override another component's movement or facing direction.
 
-プレイヤーがTargetオブジェクトの近くにいる時だけ（Triggerに入った時のみ）向くようにする処理を追加します。
+## 7. Face the target only when nearby
 
--  グラフビュー内で、プレイヤーの入力に応じて移動処理を行うためのノードを配置し設定します。具体的には、OnTriggerEnter/OnTriggerExitのタイミングで、LookTargetControlのプライオリティを変更します。
-    -  OnTriggerEnterノードを追加。LookTargetControlのSetPriorityノードを追加しOnTriggerEnterノードと接続。SetPriorityの値は10とする。
-    -  OnTriggerExitノードを追加。LookTargetControlのSetPriorityノードを追加しOnTriggerEnterノードと接続。SetPriorityの値は0とする。
+Change the behavior so that the player faces the target only while inside its trigger:
 
->Tips : プライオリティを切り替えてキャラクターの取るべき挙動を切り替えます。
+- In the Visual Scripting graph, change the priority of `LookTargetControl` on `OnTriggerEnter` and `OnTriggerExit`:
+  - Connect `OnTriggerEnter` to `LookTargetControl.SetPriority` with a value of `10`.
+  - Connect `OnTriggerExit` to `LookTargetControl.SetPriority` with a value of `0`.
+
+> **Tip:** Switching priority changes which component controls the character in each situation.

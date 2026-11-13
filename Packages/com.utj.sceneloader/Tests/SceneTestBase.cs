@@ -30,7 +30,7 @@ namespace Unity.SceneManagement.Test
             yield return null;
             
             var scene = SceneManager.GetSceneByPath(ScenePath);
-            Assert.That(scene.isLoaded, "シーンは正常に読み込まれなかった");
+            Assert.That(scene.isLoaded, "The scene did not load successfully.");
         }
     
     

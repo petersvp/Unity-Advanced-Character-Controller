@@ -15,7 +15,7 @@ namespace Unity.TinyCharacterController.Test
 
         // A Test behaves as an ordinary method
         [Test]
-        public void PreWarmの動作()
+        public void PreWarmBehavior()
         {
             var gameObjectPool = FindComponent<GameObjectPool>("Canvas");
             
@@ -23,7 +23,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator PreWarmで準備したオブジェクトを使用する()
+        public IEnumerator UseObjectsPreparedWithPreWarm()
         {
             var gameObjectPool = FindComponent<GameObjectPool>("Canvas");
 
@@ -37,7 +37,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator オブジェクトの取得と返却()
+        public IEnumerator ObtainingAndReturningObjects()
         {
             var gameObjectPool = FindComponent<GameObjectPool>("Canvas");
 

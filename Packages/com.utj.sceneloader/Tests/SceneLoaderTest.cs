@@ -12,19 +12,19 @@ namespace Unity.SceneManagement.Test
     {
 #if UNITY_EDITOR
         [SetUp]
-        public void テストを動作させるためにアドレスが登録されているかテスト()
+        public void ChecksAddressRegistrationForTests()
         {
             var groupName = "SceneLoaderTest";
             
             var settings = UnityEditor.AddressableAssets.AddressableAssetSettingsDefaultObject.Settings;
             var group = settings.FindGroup(groupName);
-            Assert.That(group, Is.Not.Null, "AddressableにSceneLoaderTestが登録されていません。" +
-                                            "テストを動作させるためにはTests/SceneLoaderTest.assetを登録する必要があります。");
+            Assert.That(group, Is.Not.Null, "SceneLoaderTest is not registered in Addressables." +
+                                            " Register Tests/SceneLoaderTest.asset to run this test.");
         }
 #endif
         [UnityTest]
         [Timeout(5000)]
-        public IEnumerator シーン読み込み後の進行度()
+        public IEnumerator ProgressAfterSceneLoading()
         {
             Assert.That(SceneLoaderManager.HasProgress, Is.False);
 
@@ -49,7 +49,7 @@ namespace Unity.SceneManagement.Test
         
         [UnityTest]
         [Timeout(5000)]
-        public IEnumerator サブシーンを読み込む()
+        public IEnumerator LoadSubscene()
         {
             var scene = default(Scene);
             var callEvent = false;
@@ -74,7 +74,7 @@ namespace Unity.SceneManagement.Test
         
         [UnityTest]
         [Timeout(5000)]
-        public IEnumerator サブシーンを解放する()
+        public IEnumerator ReleaseSubscene()
         {
             var callEvent = false;
             
@@ -102,7 +102,7 @@ namespace Unity.SceneManagement.Test
 
         [UnityTest]
         [Timeout(5000)]
-        public IEnumerator ロードしたサブシーンをロード完了前に解放する()
+        public IEnumerator ReleasesSubsceneBeforeLoadCompletes()
         {
             var sceneLoader = FindComponent<SceneLoader>("LoadFromSceneLoader");
             
@@ -124,7 +124,7 @@ namespace Unity.SceneManagement.Test
 
         [UnityTest]
         [Timeout(5000)]
-        public IEnumerator ロードしたサブシーンから呼び出したSceneLoaderを取得()
+        public IEnumerator GetTheSceneLoaderCalledFromTheLoadedSubscene()
         {
             var sceneLoader = FindComponent<SceneLoader>("LoadFromSceneLoader");
             sceneLoader.enabled = true;
@@ -141,7 +141,7 @@ namespace Unity.SceneManagement.Test
 
         [UnityTest]
         [Timeout(5000)]
-        public IEnumerator シーン解放前に即座にロード再開するもキャンセルする()
+        public IEnumerator CancelsImmediateReloadBeforeSceneRelease()
         {
             var sceneLoader = FindComponent<SceneLoader>("LoadFromSceneLoader");
             var loadCount = 0;
@@ -166,7 +166,7 @@ namespace Unity.SceneManagement.Test
 
         [UnityTest]
         [Timeout(2000)]
-        public IEnumerator ロード完了前にロードをキャンセルし際ロードした場合はキャンセルしない()
+        public IEnumerator ReloadAfterCancelBeforeCompletionIsNotCanceled()
         {
             var sceneLoader = FindComponent<SceneLoader>("LoadFromSceneLoader");
             var loadCount = 0;
@@ -187,7 +187,7 @@ namespace Unity.SceneManagement.Test
         
         [UnityTest]
         [Timeout(2000)]
-        public IEnumerator ロードとアンロードが相互の場合は逐次処理する()
+        public IEnumerator SerializesInterleavedLoadAndUnload()
         {
             var sceneLoader = FindComponent<SceneLoader>("LoadFromSceneLoader");
             var loadCount = 0;
@@ -207,7 +207,7 @@ namespace Unity.SceneManagement.Test
 
         [UnityTest]
         [Timeout(30000)]
-        public IEnumerator 同じフレームでロードとアンロードを繰り返す()
+        public IEnumerator LoadsAndUnloadsWithinSameFrame()
         {
             var sceneLoader = FindComponent<SceneLoader>("LoadFromSceneLoader");
             var loadCount = 0;
@@ -246,7 +246,7 @@ namespace Unity.SceneManagement.Test
 
         [UnityTest]
         [Timeout(30000)]
-        public IEnumerator ロードとアンロードを繰り返す()
+        public IEnumerator RepeatLoadingAndUnloading()
         {
             var sceneLoader = FindComponent<SceneLoader>("LoadFromSceneLoader");
             sceneLoader.enabled = true;
@@ -284,7 +284,7 @@ namespace Unity.SceneManagement.Test
 
         [UnityTest]
         [Timeout(1000)]
-        public IEnumerator ロードしたサブシーンのオーナーを取得する()
+        public IEnumerator GetTheOwnerOfTheLoadedSubscene()
         {
             var sceneLoader = FindComponent<SceneLoader>("LoadFromSceneLoader");
             sceneLoader.enabled = true;

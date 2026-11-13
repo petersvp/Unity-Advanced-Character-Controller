@@ -10,12 +10,12 @@ using UnityEngine.TestTools.Utils;
 namespace Unity.TinyCharacterController.Test
 {
 
-    public class GroundHeightCheckのテスト : SceneTestBase
+    public class GroundHeightCheckTests : SceneTestBase
     {
         protected override string ScenePath => TestConstants.PackagePath + "Scenes/GroundHeightCheck.unity";
 
         [UnityTest]
-        public IEnumerator 地面と接地している()
+        public IEnumerator IsGrounded()
         {
             // position.y = 0.0f, _toleranceHeight = 0.5f
             var groundCheck = FindComponent<GroundHeightCheck>("Player_1");
@@ -28,7 +28,7 @@ namespace Unity.TinyCharacterController.Test
 
 
         [UnityTest]
-        public IEnumerator 地面と少し離れている()
+        public IEnumerator SomeDistanceFromTheGround()
         {
             // position.y = 0.2f, _toleranceHeight = 0.5f
             var groundCheck = FindComponent<GroundHeightCheck>("Player_2");
@@ -40,7 +40,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator 地面から離れている()
+        public IEnumerator OffTheGround()
         {
             // position.y = 1f, _toleranceHeight = 0.5f
             var groundCheck = FindComponent<GroundHeightCheck>("Player_3");
@@ -53,7 +53,7 @@ namespace Unity.TinyCharacterController.Test
 
         
         [UnityTest]
-        public IEnumerator GroundHeightを変更して地面が少し離す()
+        public IEnumerator GroundHeightSlightlyAboveGround()
         {
             var groundCheck = FindComponent<GroundHeightCheck>("Player_1");
             groundCheck.GroundHeight = -0.1f;
@@ -65,7 +65,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator GroundHeightを変更して地面から大きく離す()
+        public IEnumerator GroundHeightFarAboveGround()
         {
             var groundCheck = FindComponent<GroundHeightCheck>("Player_1");
             groundCheck.GroundHeight = -1f;
@@ -77,7 +77,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator GroundHeightを変更して地面にめりこませる()
+        public IEnumerator GroundHeightBelowGround()
         {
             var groundCheck = FindComponent<GroundHeightCheck>("Player_1");
             groundCheck.GroundHeight = 0.1f;
@@ -91,7 +91,7 @@ namespace Unity.TinyCharacterController.Test
 
 
         [UnityTest]
-        public IEnumerator 座標を少し離す()
+        public IEnumerator MovesPositionSlightlyAway()
         {
             var groundCheck = FindComponent<GroundHeightCheck>("Player_1");
             groundCheck.GetComponent<ITransform>().Position = (new Vector3(0, 0.1f, 0));
@@ -104,7 +104,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator 座標を大きく離す()
+        public IEnumerator MovesPositionFarAway()
         {
             var groundCheck = FindComponent<GroundHeightCheck>("Player_1");
 
@@ -119,7 +119,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator 地面までの距離([Values(0, 0.1f, -0.1f, -1f, 1f)] float height)
+        public IEnumerator MeasuresDistanceToGround([Values(0, 0.1f, -0.1f, -1f, 1f)] float height)
         {
             var groundCheck = FindComponent<GroundHeightCheck>("Player_1");
             groundCheck.GroundHeight = height;
@@ -132,7 +132,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator 地面の位置()
+        public IEnumerator GroundPosition()
         {
             // position : (2, 1, 0)
             var groundCheck = FindComponent<GroundHeightCheck>("Player_3");

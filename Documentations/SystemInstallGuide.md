@@ -1,61 +1,45 @@
-﻿# Project_TCCシステムインストールガイド
+# Project_TCC System Installation Guide
 
-Project_TCCに含まれるシステムを、ご自身のUnityプロジェクトへインストールするための手順を説明します。
+This guide explains how to install the systems included with Project_TCC into your own Unity project.
 
-## インストール手順
+## Installation steps
 
-1. **Project_TCCをダウンロード**  
-   `Project_TCC`を[Zip形式でダウンロード](https://github.com/unity3d-jp/Project_TCC/archive/refs/heads/main.zip)します。
+1. **Download Project_TCC.** Download the [Project_TCC ZIP archive](https://github.com/unity3d-jp/Project_TCC/archive/refs/heads/main.zip).
+2. **Extract the ZIP archive.** Unpack the downloaded file.
+3. **Place the packages in your project.** From the extracted folder, put the following packages under your project's `Packages` folder, or reference them as packages:
+   - `com.utj.charactercontroller` — character control
+   - `com.utj.gameobjectfolder` — treats GameObjects as folders
+   - `com.utj.savedata` — saves game progress
+   - `com.utj.scenarioimporter` — extracts game-ready scripts from text
+   - `com.utj.sceneloader` — loads and unloads scenes like GameObjects
+4. **Restart the Unity Editor** after the import finishes.
 
-2. **Zipフォルダを解凍**  
-   ダウンロードしたZipフォルダを解凍します。
+> **Note:** Immediately after importing, you may see errors related to `UIElements`, such as `TypeLoadException: Could not load type 'Utj.SceneManagement.SceneLoadType' from assembly 'GOSubSceneEditor'.` The original guide says these errors disappear after restarting the Editor and can be ignored until then.
 
-3. **パッケージをプロジェクトに配置**  
-   解凍したフォルダから以下のパッケージを、自身のプロジェクトの`Packages`フォルダ以下に配置します。（あるいは、パッケージを参照します。）
-   - `com.utj.charactercontroller`（キャラクター制御）
-   - `com.utj.gameobjectfolder`（フォルダとして扱えるGameObject）
-   - `com.utj.savedata`（ゲームの進行データを保存する）
-   - `com.utj.scenarioimporter`（テキストからゲームで扱いやすい台本を抽出する）
-   - `com.utj.sceneloader`（シーンをGameObjectのように読込・解放する）
+## Using Visual Scripting
 
-4. **Unityエディターの再起動**  
-   インポート完了後、Unityエディターを再起動します。  
-   **注意:** インポート直後は`UIElements`などの項目でエラーが発生することがあります。例えば、`TypeLoadException: Could not load type 'Utj.SceneManagement.SceneLoadType' from assembly 'GOSubSceneEditor'.` などですが、このエラーは次回起動以降は発生しませんので、無視してかまいません。
+If you intend to use Visual Scripting, set it up as follows:
 
-## Visual Scriptingでの使用
+1. **Initialize Visual Scripting.** Open `Edit > Project Settings > Visual Scripting`, select the `Visual Scripting` tab, and click `Initialize Visual Scripting`.
 
-Visual Scriptingを使用する場合の設定手順です。
+   ![Visual Scripting settings](./Images/SysInst_Image01.png)
 
-1. **Visual Scriptingの初期化**  
-   - メニューから`Edit > Project Settings > Visual Scripting`に進みます。
-   - `Visual Scripting`タブを開き、`Initialize Visual Scripting`ボタンを押します。
+2. **Make the package components available.** In `Generate Nodes`, open `Node Library`.
 
-   ![SysInst_Image01.png](./Images/SysInst_Image01.png "SysInst_Image01")
+   ![Node Library settings](./Images/SysInst_Image02.png)
 
-2. **パッケージが使用するコンポーネントを使用可能にする**  
-   - `Generate Nodes`メニューから`Node Library`を開きます。
+3. Click the `+` button at the far right to add slots, then register these assemblies:
+   - `Utj.SceneLoader`
+   - `Utj.GameDataSave`
+   - `Utj.ScenarioImporter`
+   - `Utj.TinyCharacterController`
 
-   ![SysInst_Image02.png](./Images/SysInst_Image02.png "SysInst_Image02")
+   ![Assemblies added to the Node Library](./Images/SysInst_Image03.png)
 
+## Using SceneLoader
 
-   - 右端の「＋」ボタンで新規スロットを追加し、以下の各アセンブリを登録します。
-     - `Utj.SceneLoader`
-     - `Utj.GameDataSave`
-     - `Utj.ScenarioImporter`
-     - `Utj.TinyCharacterController`
+Addressables must be initialized before you use SceneLoader. If they are not initialized, you cannot register scenes with SceneLoader.
 
-    ![SysInst_Image03.png](./Images/SysInst_Image03.png "SysInst_Image03")
+1. **Enable Addressables.** Open `Window > Asset Management > Addressable > Group`, then click `Create Addressable Settings`.
 
-
-## SceneLoaderの使用
-
-SceneLoaderを使用する前に、Addressableが初期化されている必要があります。  
-**注意:** Addressableが初期化されていない場合、SceneLoaderにシーンを登録する事ができません。
-
-1. **Addressableの有効化**  
-   - メニューから`Window > Asset Management > Addressable > Group`を開きます。
-   - `Create Addressable Settings`ボタンを押してAddressableを有効にします。
-
-   ![SysInst_Image04.png](./Images/SysInst_Image04.png "SysInst_Image04")
-
----
+   ![Create Addressable Settings](./Images/SysInst_Image04.png)

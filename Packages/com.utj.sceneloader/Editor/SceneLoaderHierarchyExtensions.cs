@@ -10,7 +10,7 @@ namespace Unity.SceneManagement
     public static class SceneLoaderHierarchyExtensions
     {
         private static Texture2D _icon;
-        private const string IconGuid = "78d70be841cdde3489032af5538d631b"; // Icon_SubScene.pngのGUID
+        private const string IconGuid = "78d70be841cdde3489032af5538d631b"; // GUID of Icon_SubScene.png
 
         [InitializeOnLoadMethod]
         private static void Initialize()

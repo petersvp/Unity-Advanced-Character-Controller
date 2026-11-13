@@ -26,7 +26,7 @@ namespace Unity.TinyCharacterController.Test
         };
 
         [UnityTest]
-        public IEnumerator 地面を動かす([ValueSource(nameof(_characterNames))] (string, bool) characterData)
+        public IEnumerator MovesGround([ValueSource(nameof(_characterNames))] (string, bool) characterData)
         {
             var ground = FindComponent<Transform>(GroundObjectName);
             var character = GetObjectAndComponentInRoot<Transform>(characterData.Item1);
@@ -38,7 +38,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator 地面の移動中に地面から離れる([ValueSource(nameof(_characterNames))] (string, bool) characterData)
+        public IEnumerator LeavesMovingGround([ValueSource(nameof(_characterNames))] (string, bool) characterData)
         {
             var ground = FindComponent<Transform>(GroundObjectName);
             var character = GetObjectAndComponentInRoot<Transform>(characterData.Item1);
@@ -61,7 +61,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator 地面を回す([ValueSource(nameof(_characterNames))]  (string, bool) characterData)
+        public IEnumerator RotatesGround([ValueSource(nameof(_characterNames))]  (string, bool) characterData)
         {
             var ground = FindComponent<Transform>(GroundObjectName);
             var character = GetObjectAndComponentInRoot<Transform>(characterData.Item1);
@@ -76,7 +76,7 @@ namespace Unity.TinyCharacterController.Test
         
         
         [UnityTest]
-        public IEnumerator Controlの移動は優先されない([ValueSource(nameof(_characterNames))] (string, bool) characterData)
+        public IEnumerator ControlMovementDoesNotTakePriority([ValueSource(nameof(_characterNames))] (string, bool) characterData)
         {
             var ground = FindComponent<Transform>(GroundObjectName);
             var character = GetObjectAndComponentInRoot<Transform>(characterData.Item1);
@@ -90,7 +90,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator Controlの回転を優先する([ValueSource(nameof(_characterNames))] (string, bool)  characterData)
+        public IEnumerator PrioritizeControlRotation([ValueSource(nameof(_characterNames))] (string, bool)  characterData)
         {
             var ground = FindComponent<Transform>(GroundObjectName);
             var character = GetObjectAndComponentInRoot<Transform>(characterData.Item1);

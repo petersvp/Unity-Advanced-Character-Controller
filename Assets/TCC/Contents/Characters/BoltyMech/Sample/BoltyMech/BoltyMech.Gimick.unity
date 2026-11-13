@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59911d54f96dc44f18a44aebd919c7e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _comment: "\u30B7\u30FC\u30F3\u4E0A\u306B\u5B58\u5728\u3059\u308B\u770B\u677F\u306E\u4E00\u89A7\u3002\n\u30AD\u30E3\u30E9\u30AF\u30BF\u30FC\u304C\u8FD1\u3065\u3044\u305F\u969B\u306B\u30C0\u30A4\u30A2\u30ED\u30B0\u3092\u8868\u793A\u3059\u308B\u3002"
+  _comment: "List of billboards present on the scene.\nDisplay a dialog when a character approaches."
   _menuColor: {r: 1, g: 1, b: 1, a: 1}
   _isVisible: 1
   ChildObjects: []
@@ -378,7 +378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data:
     _json: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"ScenarioData","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Unity.ScenarioImporter.DialogueScript,
-      Utj.ScenarioImporter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ScenarioTag","value":{"$content":"\u55b6\u696d\u6642\u9593","$type":"System.String"},"typeHandle":{"Identification":"System.String,
+      Utj.ScenarioImporter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ScenarioTag","value":{"$content":"Business hours","$type":"System.String"},"typeHandle":{"Identification":"System.String,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: -2722385024556968006, guid: 4fd3c9deabe0a4dc7ab6b55160de2bdb, type: 3}
@@ -451,7 +451,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data:
     _json: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"ScenarioData","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Unity.ScenarioImporter.DialogueScript,
-      Utj.ScenarioImporter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ScenarioTag","value":{"$content":"\u30b8\u30e3\u30f3\u30d7\u529b\u306b\u3064\u3044\u3066","$type":"System.String"},"typeHandle":{"Identification":"System.String,
+      Utj.ScenarioImporter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ScenarioTag","value":{"$content":"About jumping power","$type":"System.String"},"typeHandle":{"Identification":"System.String,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: -2722385024556968006, guid: 4fd3c9deabe0a4dc7ab6b55160de2bdb, type: 3}
@@ -679,7 +679,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data:
     _json: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"ScenarioData","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Unity.ScenarioImporter.DialogueScript,
-      Utj.ScenarioImporter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ScenarioTag","value":{"$content":"Indicator\u306b\u3064\u3044\u3066","$type":"System.String"},"typeHandle":{"Identification":"System.String,
+      Utj.ScenarioImporter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ScenarioTag","value":{"$content":"About Indicators","$type":"System.String"},"typeHandle":{"Identification":"System.String,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: -2722385024556968006, guid: 4fd3c9deabe0a4dc7ab6b55160de2bdb, type: 3}
@@ -752,7 +752,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data:
     _json: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"ScenarioData","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Unity.ScenarioImporter.DialogueScript,
-      Utj.ScenarioImporter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ScenarioTag","value":{"$content":"\u90e8\u5c4b\u306e\u4e2d\u306b\u3064\u3044\u3066","$type":"System.String"},"typeHandle":{"Identification":"System.String,
+      Utj.ScenarioImporter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ScenarioTag","value":{"$content":"About the inside of the room","$type":"System.String"},"typeHandle":{"Identification":"System.String,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: -2722385024556968006, guid: 4fd3c9deabe0a4dc7ab6b55160de2bdb, type: 3}
@@ -1001,7 +1001,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data:
     _json: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"ScenarioData","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Unity.ScenarioImporter.DialogueScript,
-      Utj.ScenarioImporter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ScenarioTag","value":{"$content":"\u6328\u62f6","$type":"System.String"},"typeHandle":{"Identification":"System.String,
+      Utj.ScenarioImporter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ScenarioTag","value":{"$content":"Greetings","$type":"System.String"},"typeHandle":{"Identification":"System.String,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: -2722385024556968006, guid: 4fd3c9deabe0a4dc7ab6b55160de2bdb, type: 3}
@@ -1540,7 +1540,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data:
     _json: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"ScenarioData","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Unity.ScenarioImporter.DialogueScript,
-      Utj.ScenarioImporter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ScenarioTag","value":{"$content":"\u5742\u9053\u306b\u3064\u3044\u3066","$type":"System.String"},"typeHandle":{"Identification":"System.String,
+      Utj.ScenarioImporter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ScenarioTag","value":{"$content":"About slopes","$type":"System.String"},"typeHandle":{"Identification":"System.String,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: -2722385024556968006, guid: 4fd3c9deabe0a4dc7ab6b55160de2bdb, type: 3}
@@ -1843,7 +1843,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data:
     _json: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"ScenarioData","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Unity.ScenarioImporter.DialogueScript,
-      Utj.ScenarioImporter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ScenarioTag","value":{"$content":"\u4e0a\u308a\u5742\u306b\u3064\u3044\u3066","$type":"System.String"},"typeHandle":{"Identification":"System.String,
+      Utj.ScenarioImporter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ScenarioTag","value":{"$content":"About uphill","$type":"System.String"},"typeHandle":{"Identification":"System.String,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: -2722385024556968006, guid: 4fd3c9deabe0a4dc7ab6b55160de2bdb, type: 3}
@@ -2435,7 +2435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data:
     _json: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"ScenarioData","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"Unity.ScenarioImporter.DialogueScript,
-      Utj.ScenarioImporter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ScenarioTag","value":{"$content":"\u30c0\u30a4\u30a2\u30ed\u30b0\u306b\u3064\u3044\u3066","$type":"System.String"},"typeHandle":{"Identification":"System.String,
+      Utj.ScenarioImporter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"ScenarioTag","value":{"$content":"About dialogs","$type":"System.String"},"typeHandle":{"Identification":"System.String,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: -2722385024556968006, guid: 4fd3c9deabe0a4dc7ab6b55160de2bdb, type: 3}

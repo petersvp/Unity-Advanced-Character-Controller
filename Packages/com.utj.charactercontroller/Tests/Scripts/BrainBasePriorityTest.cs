@@ -8,12 +8,12 @@ using UnityEngine.TestTools;
 
 namespace Unity.TinyCharacterController.Test
 {
-    public class BrainBaseのプライオリティの動作テスト : SceneTestBase
+    public class BrainBasePriorityTests : SceneTestBase
     {
         protected override string ScenePath => TestConstants.PackagePath + "Scenes/HighestPriorityTest.unity";
 
         [UnityTest]
-        public IEnumerator 起動直後にコンポーネントを更新した場合はbrainControlはnull()
+        public IEnumerator BrainControlIsNullImmediatelyAfterComponentUpdate()
         {
             var instance = GameObject.Find("Target_1");
             var control = instance.GetComponent<HighestPriorityTestControl>();
@@ -37,7 +37,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator コンポーネントを更新した時のコールバックは呼ばれている()
+        public IEnumerator CallbackIsCalledWhenComponentIsUpdated()
         {
             var instance = GameObject.Find("Target_1");
 
@@ -64,7 +64,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator コンポーネントを更新した時のコールバックではControlは更新されていない()
+        public IEnumerator ControlIsNotUpdatedInCallbackWhenUpdatingComponent()
         {
             var instance = GameObject.Find("Target_1");
 
@@ -92,7 +92,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator Updateの更新()
+        public IEnumerator UpdateTiming()
         {
             var instance = GameObject.Find("Target_1");
 
@@ -121,7 +121,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator 他のコンポーネントのプライオリティが0の時の動作()
+        public IEnumerator BehaviorWhenOtherComponentsHavePriority0()
         {
             var instance = GameObject.Find("Target_1");
 
@@ -131,16 +131,16 @@ namespace Unity.TinyCharacterController.Test
             control.MovePriority = 5;
             yield return null;
 
-            Assert.True(control.HasMoveHighestPriority, "プライオリティをあげた後");
+            Assert.True(control.HasMoveHighestPriority, "After increasing priority");
             control.MovePriority = 0;
             yield return null;
 
-            Assert.False(control.HasMoveHighestPriority, "プライオリティを0にした後");
+            Assert.False(control.HasMoveHighestPriority, "After setting priority to zero");
         }
 
 
         [UnityTest]
-        public IEnumerator 他のコンポーネントがある状態で回転のプライオリティを下げる()
+        public IEnumerator LowerTurnPriorityWithAnotherComponent()
         {
             var instance = GameObject.Find("Target_1");
 
@@ -150,15 +150,15 @@ namespace Unity.TinyCharacterController.Test
             control.TurnPriority = 10;
             yield return null;
 
-            Assert.True(control.HasTurnHighestPriority, "プライオリティを上げる");
+            Assert.True(control.HasTurnHighestPriority, "IncreasePriority");
             control.TurnPriority = 4;
             yield return null;
 
-            Assert.IsFalse(control.HasTurnHighestPriority, "起動直後");
+            Assert.IsFalse(control.HasTurnHighestPriority, "Immediately after startup");
         }
 
         [UnityTest]
-        public IEnumerator 他のコンポーネントがある状態でプライオリティを下げる()
+        public IEnumerator LowerPriorityWithAnotherComponent()
         {
             var instance = GameObject.Find("Target_1");
 
@@ -181,7 +181,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator 他のコンポーネントがある状態でプライオリティを上げる()
+        public IEnumerator RaisePriorityWithAnotherComponent()
         {
             var instance = GameObject.Find("Target_1");
 
@@ -202,7 +202,7 @@ namespace Unity.TinyCharacterController.Test
 
 
         [UnityTest]
-        public IEnumerator プライオリティをあげた後に0にする()
+        public IEnumerator SetPriorityTo0AfterRaisingIt()
         {
             var instance = GameObject.Find("Target_1");
 
@@ -220,7 +220,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator プライオリティを上げる()
+        public IEnumerator IncreasePriority()
         {
             var instance = GameObject.Find("Target_1");
 

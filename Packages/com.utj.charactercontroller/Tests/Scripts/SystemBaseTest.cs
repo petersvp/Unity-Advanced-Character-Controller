@@ -25,7 +25,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [Test]
-        public void システムを作って削除する()
+        public void CreatesAndDestroysSystem()
         {
             var system = BatchDummySystem.GetInstance(UpdateTiming.FixedUpdate);
             var isDeleted = false;
@@ -37,7 +37,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [Test]
-        public void オブジェクトを削除して要素をリセットする()
+        public void DestroyingObjectResetsElements()
         {
             var system = BatchDummySystem.GetInstance(UpdateTiming.Update);
             var obj1 = new GameObject();
@@ -60,7 +60,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [Test]
-        public void オブジェクトを登録()
+        public void RegisterObject()
         {
             var obj = new GameObject();
             var component = obj.AddComponent<BatchDummyComponent>();
@@ -74,7 +74,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [Test]
-        public void オブジェクトを削除()
+        public void DestroysObjectFromSystem()
         {
             var obj = new GameObject();
             var component = obj.AddComponent<BatchDummyComponent>();
@@ -90,7 +90,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [Test]
-        public void オブジェクトを複数登録してから削除()
+        public void RegistersThenDestroysMultipleObjects()
         {
             var obj1 = new GameObject();
             var component1 = obj1.AddComponent<BatchDummyComponent>();
@@ -113,7 +113,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [Test]
-        public void オブジェクトの登録を解除したコンポーネントの登録を解除()
+        public void UnregistersComponentWhenObjectUnregistered()
         {
             var obj1 = new GameObject();
             var component1 = obj1.AddComponent<BatchDummyComponent>();
@@ -124,7 +124,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [Test]
-        public void オブジェクトの登録を全て解除()
+        public void UnregisterAllObjects()
         {
             var obj1 = new GameObject();
             var component1 = obj1.AddComponent<BatchDummyComponent>();

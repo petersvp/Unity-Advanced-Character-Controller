@@ -15,7 +15,7 @@ namespace Unity.TinyCharacterController.Test
     {
 
         [UnityTest]
-        public IEnumerator CharacterBrain時のDeltaTimeの更新()
+        public IEnumerator UpdatesDeltaTimeWithCharacterBrain()
         {
             var obj = GetObjectAndComponentInRoot<CharacterBrain>("CharacterBrain");
             var mock = obj.gameObject.AddComponent<MockCheck>();
@@ -31,7 +31,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator RigidBodyBrain時のDeltaTimeの更新()
+        public IEnumerator UpdatesDeltaTimeWithRigidbodyBrain()
         {
             var obj = GetObjectAndComponentInRoot<RigidbodyBrain>("RigidbodyBrain");
             var mock = obj.gameObject.AddComponent<MockCheck>();

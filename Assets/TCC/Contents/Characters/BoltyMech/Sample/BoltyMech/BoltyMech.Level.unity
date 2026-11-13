@@ -4505,7 +4505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59911d54f96dc44f18a44aebd919c7e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _comment: "\u30B9\u30C6\u30FC\u30B8\u306E\u30E9\u30A4\u30C6\u30A3\u30F3\u30B0\u8A2D\u5B9A"
+  _comment: "Stage lighting settings"
   _menuColor: {r: 1, g: 0.7591003, b: 0.023584902, a: 1}
   _isVisible: 0
   ChildObjects: []
@@ -14237,7 +14237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59911d54f96dc44f18a44aebd919c7e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _comment: "\u30B9\u30C6\u30FC\u30B8\u3092\u518D\u73FE\u3059\u308B\u305F\u3081\u306E\u30B8\u30AA\u30E1\u30C8\u30EA\u4E00\u89A7\u3002"
+  _comment: "Geometry list to reproduce the stage."
   _menuColor: {r: 1, g: 0, b: 0, a: 1}
   _isVisible: 0
   ChildObjects: []

@@ -14,7 +14,7 @@ namespace Unity.TinyCharacterController.Test
         
         
         [Test]
-        public void 起動直後の地面判定()
+        public void ChecksGroundAtStartup()
         {
             // position = (2,0,0)
             var groundCheck = FindComponent<GroundCheck>("Player_1");
@@ -24,7 +24,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator 地面と接地している()
+        public IEnumerator IsGrounded()
         {
             // position = (2,0,0)
             var groundCheck = FindComponent<GroundCheck>("Player_1");
@@ -36,7 +36,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator 少し浮いている()
+        public IEnumerator SlightlyFloating()
         {
             // position = (0, 0.3, 0)
             // ambiguousDistance = 0.49
@@ -50,7 +50,7 @@ namespace Unity.TinyCharacterController.Test
 
 
         [UnityTest]
-        public IEnumerator 浮いている()
+        public IEnumerator Floating()
         {
             // position = (-3, 1, 0)
             // ambiguousDistance = 0.49
@@ -63,7 +63,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator 地面が傾いてるがMaxSlopより小さい()
+        public IEnumerator GroundSlopeBelowMaxSlope()
         {
             var groundCheck = FindComponent<GroundCheck>("Player_4");
             
@@ -74,7 +74,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator 地面の傾きがMaxSlopeより大きい()
+        public IEnumerator GroundSlopeAboveMaxSlope()
         {
             var groundCheck = FindComponent<GroundCheck>("Player_5");
             
@@ -85,7 +85,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator 地面オブジェクトが変化する()
+        public IEnumerator GroundObjectChanges()
         {
             var groundCheck = FindComponent<GroundCheck>("Player_6");
             groundCheck.transform.position = new Vector3(8, 0, 3);
@@ -96,7 +96,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator IsChangeGroundObjectは次のフレームで解除される()
+        public IEnumerator IsChangeGroundObjectIsClearedOnNextFrame()
         {
             var groundCheck = FindComponent<GroundCheck>("Player_6");
             groundCheck.transform.position = new Vector3(8, 0, 3);
@@ -108,7 +108,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator 地面が変化する度にイベントは呼ばれる()
+        public IEnumerator EventIsCalledEveryTimeTheGroundChanges()
         {
             var groundCheck = FindComponent<GroundCheck>("Player_6");
             groundCheck.transform.position = new Vector3(8, 0, 3);
@@ -122,7 +122,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator オブジェクトの変更時にイベントを呼ぶ()
+        public IEnumerator CallEventWhenObjectChanges()
         {
             var plane2 = GameObject.Find("Plane_2");
             var groundCheck = FindComponent<GroundCheck>("Player_6");
@@ -144,7 +144,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator 地面との距離([Values(0, 0.1f, 0.2f, -0.1f, -0.2f)] float y)
+        public IEnumerator DistanceToTheGround([Values(0, 0.1f, 0.2f, -0.1f, -0.2f)] float y)
         {
             // position = (2,0,0)
             var groundCheck = FindComponent<GroundCheck>("Player_1");

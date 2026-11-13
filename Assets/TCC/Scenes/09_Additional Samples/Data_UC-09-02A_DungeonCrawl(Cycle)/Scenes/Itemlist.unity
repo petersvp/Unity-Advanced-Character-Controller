@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data:
-    _json: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"Discription","value":{"$content":["\u305d\u306e\u3078\u3093\u306b\u8ee2\u304c\u3063\u3066\u3044\u305f\u5263\u3002","\u3053\u308c\u3068\u8a00\u3063\u3066\u7279\u5fb4\u306f\u306a\u304f\u3001\u60aa\u304f\u8a00\u3048\u3070\u51e1\u5eb8\u3001\u826f\u304f\u8a00\u3048\u3070\u4f7f\u3044\u3084\u3059\u3044\u3002",""],"$type":"System.Collections.Generic.List`1[[System.String,
+    _json: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"Discription","value":{"$content":["A sword was lying around.","It has no special features, is mediocre at worst, and easy to use at best.",""],"$type":"System.Collections.Generic.List`1[[System.String,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"typeHandle":{"Identification":"System.Collections.Generic.List`1[[System.String,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"Parameters","value":{"$content":[120.0,2.3,20.0],"$type":"System.Collections.Generic.List`1[[System.Single,
@@ -291,7 +291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data:
-    _json: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"Discription","value":{"$content":["\u305d\u306e\u3078\u3093\u306b\u8ee2\u304c\u3063\u3066\u3044\u305f\u5263\u3002","\u3053\u308c\u3068\u8a00\u3063\u3066\u7279\u5fb4\u306f\u306a\u304f\u3001\u60aa\u304f\u8a00\u3048\u3070\u51e1\u5eb8\u3001\u826f\u304f\u8a00\u3048\u3070\u4f7f\u3044\u3084\u3059\u3044\u3002",""],"$type":"System.Collections.Generic.List`1[[System.String,
+    _json: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"Discription","value":{"$content":["A sword was lying around.","It has no special features, is mediocre at worst, and easy to use at best.",""],"$type":"System.Collections.Generic.List`1[[System.String,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"typeHandle":{"Identification":"System.Collections.Generic.List`1[[System.String,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"Parameters","value":{"$content":[120.0,2.3,20.0],"$type":"System.Collections.Generic.List`1[[System.Single,
@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data:
-    _json: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"Discription","value":{"$content":["\u305d\u306e\u3078\u3093\u306b\u8ee2\u304c\u3063\u3066\u3044\u305f\u5263\u3002","\u3053\u308c\u3068\u8a00\u3063\u3066\u7279\u5fb4\u306f\u306a\u304f\u3001\u60aa\u304f\u8a00\u3048\u3070\u51e1\u5eb8\u3001\u826f\u304f\u8a00\u3048\u3070\u4f7f\u3044\u3084\u3059\u3044\u3002",""],"$type":"System.Collections.Generic.List`1[[System.String,
+    _json: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"Discription","value":{"$content":["A sword was lying around.","It has no special features, is mediocre at worst, and easy to use at best.",""],"$type":"System.Collections.Generic.List`1[[System.String,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"typeHandle":{"Identification":"System.Collections.Generic.List`1[[System.String,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"Parameters","value":{"$content":[120.0,2.3,20.0],"$type":"System.Collections.Generic.List`1[[System.Single,

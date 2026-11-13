@@ -26,7 +26,7 @@ namespace Unity.SaveData.Test
         }
         
         [Test]
-        public void Boolコンテナのテスト()
+        public void BoolContainerTests()
         {
             var saveDataControl = FindComponent<SaveDataControl>("SaveDataControl");
             var boolContainer = saveDataControl.GetContainerT<BoolContainer>("Bool");
@@ -46,7 +46,7 @@ namespace Unity.SaveData.Test
         }
 
         [Test]
-        public void Floatコンテナのテスト()
+        public void FloatContainerTests()
         {
             var saveDataControl = FindComponent<SaveDataControl>("SaveDataControl");
             var floatContainer = saveDataControl.GetContainerT<FloatContainer>("Float");
@@ -66,7 +66,7 @@ namespace Unity.SaveData.Test
         }
 
         [Test]
-        public void Stringコンテナのテスト()
+        public void StringContainerTests()
         {
             var saveDataControl = FindComponent<SaveDataControl>("SaveDataControl");
             var stringContainer = saveDataControl.GetContainerT<StringContainer>("String");
@@ -89,7 +89,7 @@ namespace Unity.SaveData.Test
         }
 
         [Test]
-        public void Vector3コンテナのテスト()
+        public void Vector3ContainerTests()
         {
             var saveDataControl = FindComponent<SaveDataControl>("SaveDataControl");
             var vector3Container = saveDataControl.GetContainerT<Vector3Container>("Vector3");
@@ -113,7 +113,7 @@ namespace Unity.SaveData.Test
         }
 
         [Test]
-        public void フラグコンテナのテスト()
+        public void FlagContainerTests()
         {
             var saveDataControl = FindComponent<SaveDataControl>("SaveDataControl");
             var flagContainer = saveDataControl.GetContainerT<FlagCollectionContainer>("Flag");
@@ -132,7 +132,7 @@ namespace Unity.SaveData.Test
         }
 
         [Test]
-        public void Intコンテナのテスト()
+        public void IntContainerTests()
         {
             var saveDataControl = FindComponent<SaveDataControl>("SaveDataControl");
             var intContainer = saveDataControl.GetContainerT<IntContainer>("Int");

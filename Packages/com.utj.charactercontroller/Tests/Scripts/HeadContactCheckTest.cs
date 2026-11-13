@@ -20,7 +20,7 @@ namespace Unity.TinyCharacterController.Test
         };
         
         [UnityTest]
-        public IEnumerator 頭上の接触判定([ValueSource(nameof(RoofPositionsForIsContact))] (float,  bool) values)
+        public IEnumerator DetectsOverheadContact([ValueSource(nameof(RoofPositionsForIsContact))] (float,  bool) values)
         {
             var headContactCheck = FindComponent<HeadContactCheck>("Character_1");
             var roof = GameObject.Find("Roof");
@@ -34,7 +34,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator 頭上との距離の判定([ValueSource(nameof(RoofPositionsForIsContact))] (float, bool) values)
+        public IEnumerator MeasuresDistanceToOverheadObject([ValueSource(nameof(RoofPositionsForIsContact))] (float, bool) values)
         {
             var headContactCheck = FindComponent<HeadContactCheck>("Character_1");
             var roof = GameObject.Find("Roof");
@@ -57,7 +57,7 @@ namespace Unity.TinyCharacterController.Test
         };
         
         [UnityTest]
-        public IEnumerator 頭上の有無判定([ValueSource(nameof(RoofPositionsForDetection))] (float,  bool) values)
+        public IEnumerator DetectsOverheadObject([ValueSource(nameof(RoofPositionsForDetection))] (float,  bool) values)
         {
             var headContactCheck = FindComponent<HeadContactCheck>("Character_1");
             var roof = GameObject.Find("Roof");
@@ -73,7 +73,7 @@ namespace Unity.TinyCharacterController.Test
         
         
         [UnityTest]
-        public IEnumerator 頭上のオブジェクトが変化()
+        public IEnumerator OverheadObjectChanges()
         {
             var headContactCheck = FindComponent<HeadContactCheck>("Character_1");
             var roof = GameObject.Find("Roof");
@@ -105,7 +105,7 @@ namespace Unity.TinyCharacterController.Test
         };
         
         [UnityTest]
-        public IEnumerator 高さの変更([ValueSource(nameof(CharacterHeights))] (float,  bool) values)
+        public IEnumerator ChangeHeight([ValueSource(nameof(CharacterHeights))] (float,  bool) values)
         {
             var headContactCheck = FindComponent<HeadContactCheck>("Character_1");
             var roof = GameObject.Find("Roof");

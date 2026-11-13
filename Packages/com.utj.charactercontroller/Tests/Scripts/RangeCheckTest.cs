@@ -19,7 +19,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator 最初から複数のオブジェクトがある()
+        public IEnumerator StartsWithMultipleObjects()
         {
             var root = GetObjectAndComponentInRoot<Transform>("Test_1");
             root.gameObject.SetActive(true);
@@ -37,7 +37,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator カメラの範囲内のオブジェクトを探す()
+        public IEnumerator FindObjectsWithinCameraRange()
         {
             var root = GetObjectAndComponentInRoot<Transform>("Test_2");
             root.gameObject.SetActive(true);
@@ -55,7 +55,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator カメラから障害物で隠れていないオブジェクトを探す()
+        public IEnumerator FindObjectsNotHiddenByObstaclesFromTheCamera()
         {
             var root = GetObjectAndComponentInRoot<Transform>("Test_3");
             root.gameObject.SetActive(true);
@@ -73,7 +73,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator プレイヤーから障害物で隠れていないオブジェクトを探す()
+        public IEnumerator FindsObjectsVisibleFromPlayer()
         {
             var root = GetObjectAndComponentInRoot<Transform>("Test_4");
             root.gameObject.SetActive(true);
@@ -91,7 +91,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator プレイヤーからもカメラからも隠れていないオブジェクトを探す()
+        public IEnumerator FindsObjectsVisibleFromPlayerAndCamera()
         {
             var root = GetObjectAndComponentInRoot<Transform>("Test_5");
             root.gameObject.SetActive(true);
@@ -109,7 +109,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator キャラクターを移動させる()
+        public IEnumerator MoveTheCharacter()
         {
             var root = GetObjectAndComponentInRoot<Transform>("Test_6");
             root.gameObject.SetActive(true);
@@ -128,7 +128,7 @@ namespace Unity.TinyCharacterController.Test
             Assert.That(targets.Exists(item => item.name == "Sphere_5"), Is.False);
         }
         [UnityTest]
-        public IEnumerator キャラクターを移動して増減したオブジェクトを探す()
+        public IEnumerator FindsChangedTargetsAfterMovingCharacter()
         {
             var root = GetObjectAndComponentInRoot<Transform>("Test_7");
             root.gameObject.SetActive(true);
@@ -143,7 +143,7 @@ namespace Unity.TinyCharacterController.Test
 
             var result = rangeTargetCheck.ChangedValues(0, out var add, out var remove);
             
-            Assert.That(result, Is.True, "値が変化なかった");
+            Assert.That(result, Is.True, "The value did not change.");
             Assert.That(targets.Count, Is.EqualTo(3));
             Assert.That(add.Count, Is.EqualTo(1));
             Assert.That(remove.Count, Is.EqualTo(1));
@@ -155,7 +155,7 @@ namespace Unity.TinyCharacterController.Test
         
         
         [UnityTest]
-        public IEnumerator オブジェクトを無効にする()
+        public IEnumerator DisablesObject()
         {
             var root = GetObjectAndComponentInRoot<Transform>("Test_8");
             root.gameObject.SetActive(true);
@@ -170,7 +170,7 @@ namespace Unity.TinyCharacterController.Test
             yield return null;
             
             var result = rangeTargetCheck.ChangedValues(0, out var add, out var remove);
-            Assert.That(result, Is.True, "値が変化なかった");
+            Assert.That(result, Is.True, "The value did not change.");
 
             Assert.That(remove.Count, Is.EqualTo(1));
             Assert.That(remove.Exists(item => item.name == "Sphere_1"));
@@ -183,7 +183,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator オブジェクトを削除する()
+        public IEnumerator DestroysObject()
         {
             var root = GetObjectAndComponentInRoot<Transform>("Test_8");
             root.gameObject.SetActive(true);
@@ -201,7 +201,7 @@ namespace Unity.TinyCharacterController.Test
             
             
             var result = rangeTargetCheck.ChangedValues(0, out var add, out var remove);
-            Assert.That(result, Is.True, "値が変化なかった");
+            Assert.That(result, Is.True, "The value did not change.");
 
             Assert.That(remove.Count, Is.EqualTo(1));
             
@@ -213,7 +213,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator オブジェクトを削除した時のイベント()
+        public IEnumerator RaisesEventWhenObjectDestroyed()
         {
             var root = GetObjectAndComponentInRoot<Transform>("Test_8");
             root.gameObject.SetActive(true);
@@ -236,7 +236,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [Test]
-        public void タグを取得()
+        public void GetTag()
         {
             var root = GetObjectAndComponentInRoot<Transform>("Test_9");
             root.gameObject.SetActive(true);
@@ -248,7 +248,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator Transparentの壁は無視する()
+        public IEnumerator IgnoreTransparentWalls()
         {
             var root = GetObjectAndComponentInRoot<Transform>("Test_10");
             root.gameObject.SetActive(true);

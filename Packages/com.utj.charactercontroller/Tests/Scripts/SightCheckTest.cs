@@ -13,7 +13,7 @@ namespace Unity.TinyCharacterController.Test
 
 
         [UnityTest]
-        public IEnumerator 視界内にオブジェクトがあれば見つける()
+        public IEnumerator FindObjectsWithinSight()
         {
             var sightCheck = FindComponent<SightCheck>("Enemy_1");
             
@@ -23,7 +23,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator タグが設定されている場合はタグのみを見つける()
+        public IEnumerator FindsOnlyObjectsWithMatchingTag()
         {
             var sightCheck = FindComponent<SightCheck>("Enemy_2");
             var player2 = GameObject.Find("Player_2");
@@ -38,7 +38,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator 遮蔽物で視界を遮る()
+        public IEnumerator ObstacleBlocksSight()
         {
             var sightCheck = FindComponent<SightCheck>("Enemy_3");
             yield return null;
@@ -47,7 +47,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator 遮蔽物で視界を遮るがRayCastがFalse()
+        public IEnumerator ObstacleDoesNotBlockSightWhenRaycastDisabled()
         {
             var sightCheck = FindComponent<SightCheck>("Enemy_4");
             yield return null;
@@ -56,7 +56,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator オブジェクトはあるがタグが不一致()
+        public IEnumerator ObjectExistsButTagsDoNotMatch()
         {
             var sightCheck = FindComponent<SightCheck>("Enemy_5");
             yield return null;
@@ -65,7 +65,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator VisibleLayerMaskに含まれる()
+        public IEnumerator IncludedInVisibleLayerMask()
         {
             var sightCheck = FindComponent<SightCheck>("Enemy_6");
             yield return null;
@@ -74,7 +74,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator EnvironmentLayerで遮蔽されている()
+        public IEnumerator ShieldedByEnvironmentLayer()
         {
             var sightCheck = FindComponent<SightCheck>("Enemy_7");
             yield return null;
@@ -83,7 +83,7 @@ namespace Unity.TinyCharacterController.Test
         }
      
         [UnityTest]
-        public IEnumerator EnvironmentLayerに含まれるがVisibleLayerMaskに含まれていない()
+        public IEnumerator IncludedInEnvironmentLayerButNotIncludedInVisibleLayerMask()
         {
             var sightCheck = FindComponent<SightCheck>("Enemy_8");
             yield return null;
@@ -92,7 +92,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator 視界内の対象の数が変化した()
+        public IEnumerator TargetCountChanges()
         {
             var sightCheck = FindComponent<SightCheck>("Enemy_9");
             var player10 = GameObject.Find("Player_10");
@@ -113,7 +113,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator 視界内の距離が低下する()
+        public IEnumerator VisibleDistanceDecreases()
         {
             var sightCheck = FindComponent<SightCheck>("Enemy_9");
             sightCheck.Range = 1;
@@ -126,7 +126,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator 視界内の範囲が低下する()
+        public IEnumerator FieldOfViewNarrows()
         {
             var sightCheck = FindComponent<SightCheck>("Enemy_9");
             sightCheck.Angle = 10;

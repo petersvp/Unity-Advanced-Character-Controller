@@ -114,7 +114,7 @@ namespace Unity.TinyCharacterController.Effect
         }
 
         
-        int IEarlyUpdateComponent.Order => Order.Effect - 1; // 他のコンポーネントより先に実行
+        int IEarlyUpdateComponent.Order => Order.Effect - 1; // Run before other components
        
         
 #if UNITY_EDITOR

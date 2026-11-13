@@ -12,7 +12,7 @@ namespace Unity.TinyCharacterController.Test
     public class SyncTransformControlTest : SceneTestBase
     {
         [UnityTest]
-        public IEnumerator TargetTransformを設定すると同じ座標へ移動する()
+        public IEnumerator SettingTargetTransformMovesToTheSameCoordinates()
         {
             var control = FindComponent<SyncTransformControl>("Player");
             var target = GameObject.Find("Target").transform;
@@ -32,7 +32,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator TargetTransformを解除すると追跡しない()
+        public IEnumerator NoTrackingWhenTargetTransformIsCanceled()
         {
             var control = FindComponent<SyncTransformControl>("Player");
             var target = GameObject.Find("Target").transform;
@@ -59,7 +59,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator Transitionが設定されている場合はTargetTransformへの到達に時間がかかる()
+        public IEnumerator IfTransitionIsSetItTakesTimeToReachTargetTransform()
         {
             var control = FindComponent<SyncTransformControl>("Player");
             var target = GameObject.Find("Target").transform;
@@ -88,7 +88,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator Transition中にTargetTransformが外されれば追跡は停止する()
+        public IEnumerator TrackingWillStopIfTargetTransformIsRemovedDuringTransition()
         {
             var control = FindComponent<SyncTransformControl>("Player");
             var target = GameObject.Find("Target").transform;
@@ -115,7 +115,7 @@ namespace Unity.TinyCharacterController.Test
         }
         
         [UnityTest]
-        public IEnumerator Priorityが無効の場合は移動しない()
+        public IEnumerator DoesNotMoveWhenPriorityDisabled()
         {
             var control = FindComponent<SyncTransformControl>("Player");
             var target = GameObject.Find("Target").transform;
@@ -135,7 +135,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator 他のEffectを無視する()
+        public IEnumerator IgnoreOtherEffects()
         {
             var control = FindComponent<SyncTransformControl>("Player");
             var target = GameObject.Find("Target").transform;

@@ -28,14 +28,14 @@ namespace Unity.SaveData.Test
         
         
         [Test]
-        public void インスタンスの取得の確認()
+        public void GetsInstance()
         {
             var inventory = FindComponent<InventoryContainer>(GameObjectName);
             Assert.That(inventory, Is.Not.Null);
         }
 
         [Test]
-        public void 現在のアイテム一覧を確認する()
+        public void CheckTheCurrentItemList()
         {
             var inventory = FindComponent<InventoryContainer>(GameObjectName);
             var itemNames = new List<string>(inventory.ItemNames);
@@ -45,7 +45,7 @@ namespace Unity.SaveData.Test
         }
 
         [Test]
-        public void 現在のアイテムの個数を確認する()
+        public void CheckTheCurrentNumberOfItems()
         {
             var inventory = FindComponent<InventoryContainer>(GameObjectName);
             Assert.That(inventory.GetItemCount("Item1"), Is.EqualTo(0));
@@ -54,7 +54,7 @@ namespace Unity.SaveData.Test
         }
 
         [Test]
-        public void 既存のアイテムを増やす()
+        public void IncreaseExistingItems()
         {
             var inventory = FindComponent<InventoryContainer>(GameObjectName);
             inventory.AddItem("Item2", 102);
@@ -65,7 +65,7 @@ namespace Unity.SaveData.Test
         }
 
         [Test]
-        public void 既存のアイテムを減らす()
+        public void DecreasesExistingItemCount()
         {
             var inventory = FindComponent<InventoryContainer>(GameObjectName);
             inventory.SubtractItem("Item3", 1);
@@ -78,7 +78,7 @@ namespace Unity.SaveData.Test
         
 
         [Test]
-        public void アイテムを取得する()
+        public void GetItems()
         {
             var inventory = FindComponent<InventoryContainer>(GameObjectName);
             inventory.SubtractItem("NewItem", 15);
@@ -86,7 +86,7 @@ namespace Unity.SaveData.Test
         }
 
         [Test]
-        public void アイテムを失う()
+        public void LosesItem()
         {
             var inventory = FindComponent<InventoryContainer>(GameObjectName);
             inventory.SubtractItem("Item3", 4);
@@ -96,7 +96,7 @@ namespace Unity.SaveData.Test
         }
 
         [Test]
-        public void 最大個数より多くアイテムを失う()
+        public void LosesMoreItemsThanMaximum()
         {
             var inventory = FindComponent<InventoryContainer>(GameObjectName);
             inventory.SubtractItem("Item3", 12);
@@ -106,14 +106,14 @@ namespace Unity.SaveData.Test
         }
 
         [Test]
-        public void アイテムがない状態でアイテムを失う()
+        public void LosesItemWhenInventoryEmpty()
         {
             var inventory = FindComponent<InventoryContainer>(GameObjectName);
             inventory.SubtractItem("NewItem", 12);
         }
 
         [Test]
-        public void アイテムの個数を直接指定する()
+        public void SetsItemCountDirectly()
         {
             var inventory = FindComponent<InventoryContainer>(GameObjectName);
             inventory.SetItemCount("Item1", 30);
@@ -125,7 +125,7 @@ namespace Unity.SaveData.Test
         }
 
         [Test]
-        public void 保存()
+        public void Save()
         {
             var inventory = FindComponent<InventoryContainer>(GameObjectName);
             var saveDataControl = inventory.GetComponent<SaveDataControl>();
@@ -140,7 +140,7 @@ namespace Unity.SaveData.Test
         }
 
         [Test]
-        public void 保存と展開()
+        public void SavesAndRestores()
         {
             var inventory = FindComponent<InventoryContainer>(GameObjectName);
             var saveDataControl = inventory.GetComponent<SaveDataControl>();

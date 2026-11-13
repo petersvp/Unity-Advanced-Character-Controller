@@ -19,18 +19,18 @@ namespace Unity.TinyCharacterController.Utility
 
         public const int Check = -200;
         public const int Gravity = -100;
-        // 自己完結
+        // Self-contained
         public const int Effect = -50;
         // Control
         public const int Control = 5;
         
         // ----------------------------------
-        // 計算結果を反映 ( ExecuteOrder )
+        // Apply calculation results (ExecuteOrder)
         // ----------------------------------
 
-        public const int EarlyUpdateBrain = -101;   // InputSystemより前
-        public const int UpdateBrain = 10;          // Brainの更新タイミング
-        public const int PostUpdate = 100;          // Brainの後
-        public const int UpdateIK = 50;             // Ikの更新タイミング
+        public const int EarlyUpdateBrain = -101;   // Before InputSystem
+        public const int UpdateBrain = 10;          // Brain update timing
+        public const int PostUpdate = 100;          // After Brain
+        public const int UpdateIK = 50;             // IK update timing
     }
 }

@@ -15,7 +15,7 @@ namespace Unity.TinyCharacterController.Test
             => "Packages/com.unity.tiny.character.controller/Tests/Scenes/LadderMoveControl.unity";
 
         [UnityTest]
-        public IEnumerator 掴むとプライオリティが有効になる()
+        public IEnumerator GrabbingLadderEnablesPriority()
         {
             var control = FindComponent<LadderMoveControl>("Player_1");
             var ladder = FindComponent<Ladder>("Ladder");
@@ -35,7 +35,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator 掴んだ後に離すとプライオリティを失う()
+        public IEnumerator ReleasingLadderDisablesPriority()
         {
             var control = FindComponent<LadderMoveControl>("Player_1");
             var ladder = FindComponent<Ladder>("Ladder");
@@ -53,7 +53,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator プライオリティが無くても掴むと座標を更新するがMoveで移動しない()
+        public IEnumerator GrabbingLadderWithoutPriorityUpdatesPositionButMoveDoesNotMove()
         {
             var control = FindComponent<LadderMoveControl>("Player_1");
             var ladder = FindComponent<Ladder>("Ladder");
@@ -70,7 +70,7 @@ namespace Unity.TinyCharacterController.Test
 
 
         [UnityTest]
-        public IEnumerator プライオリティが無くても掴むと座標を更新する()
+        public IEnumerator GrabbingLadderWithoutPriorityUpdatesPosition()
         {
             var control = FindComponent<LadderMoveControl>("Player_1");
             var ladder = FindComponent<Ladder>("Ladder");
@@ -88,7 +88,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator 移動はステップ単位で行う()
+        public IEnumerator MoveInSteps()
         {
             var control = FindComponent<LadderMoveControl>("Player_1");
             var ladder = FindComponent<Ladder>("Ladder");
@@ -114,7 +114,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator ステップ完了時にOnCompleteStepを呼ぶ()
+        public IEnumerator CallOnCompleteStepWhenStepCompletes()
         {
             var control = FindComponent<LadderMoveControl>("Player_1");
             var ladder = FindComponent<Ladder>("Ladder");
@@ -134,7 +134,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator 押しっぱなしは連続で移動する()
+        public IEnumerator HoldDownToMoveContinuously()
         {
             var control = FindComponent<LadderMoveControl>("Player_1");
             var ladder = FindComponent<Ladder>("Ladder");
@@ -143,7 +143,7 @@ namespace Unity.TinyCharacterController.Test
             control.GrabLadder(ladder);
             control.Move(1);
 
-            yield return null; // 実行順の問題で二回必要
+            yield return null; // Needed twice because of execution order
             yield return null;
 
             Assert.That(control.IsComplete, Is.False);
@@ -163,7 +163,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator 掴んだ後にプライオリティをあげると直近のステップへTransition時間かけて移動する()
+        public IEnumerator RaisingPriorityAfterGrabMovesToNearestStepOverTransition()
         {
             var control = FindComponent<LadderMoveControl>("Player_1");
             var ladder = FindComponent<Ladder>("Ladder");
@@ -203,7 +203,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator 掴んだ時は直近のStepPointに移動する()
+        public IEnumerator GrabbingMovesToNearestStepPoint()
         {
             var control = FindComponent<LadderMoveControl>("Player_1");
             var ladder = FindComponent<Ladder>("Ladder");
@@ -217,7 +217,7 @@ namespace Unity.TinyCharacterController.Test
             control.Priority = 10;
             control.GrabLadder(ladder);
 
-            yield return null; // 実行順の問題で二回必要
+            yield return null; // Needed twice because of execution order
             yield return new WaitForSeconds(0.6f);
             yield return null;
 
@@ -226,7 +226,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator 掴んだ時に上を押してると即座に移動する()
+        public IEnumerator PressingUpWhileGrabbingMovesImmediately()
         {
             var control = FindComponent<LadderMoveControl>("Player_1");
             var ladder = FindComponent<Ladder>("Ladder");
@@ -241,7 +241,7 @@ namespace Unity.TinyCharacterController.Test
             control.GrabLadder(ladder);
             control.Move(1);
 
-            yield return null; // 実行順の問題で二回必要
+            yield return null; // Needed twice because of execution order
 
             control.Move(0);
             yield return new WaitForSeconds(1f);
@@ -251,7 +251,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator 下に到達すればBottomPointへ移動する()
+        public IEnumerator MoveToBottomPointWhenReachingTheBottom()
         {
             var control = FindComponent<LadderMoveControl>("Player_1");
             var ladder = FindComponent<Ladder>("Ladder");
@@ -265,7 +265,7 @@ namespace Unity.TinyCharacterController.Test
             control.GrabLadder(ladder);
             control.Move(-1);
 
-            yield return null; // 実行順の問題で二回必要
+            yield return null; // Needed twice because of execution order
             yield return null;
 
             yield return new WaitForSeconds(2f);
@@ -278,7 +278,7 @@ namespace Unity.TinyCharacterController.Test
 
 
         [UnityTest]
-        public IEnumerator 上に到達すればTopPointへ移動する()
+        public IEnumerator MoveToTopPointWhenReachingTheTop()
         {
             var control = FindComponent<LadderMoveControl>("Player_1");
             var ladder = FindComponent<Ladder>("Ladder");
@@ -292,7 +292,7 @@ namespace Unity.TinyCharacterController.Test
             control.GrabLadder(ladder);
             control.Move(1);
 
-            yield return null; // 実行順の問題で二回必要
+            yield return null; // Needed twice because of execution order
             yield return null;
 
             yield return new WaitForSeconds(1f);
@@ -305,7 +305,7 @@ namespace Unity.TinyCharacterController.Test
 
 
         [UnityTest]
-        public IEnumerator 他のControlで下に到達した場合もBottomPointへ移動する()
+        public IEnumerator MoveToBottomPointEvenWhenReachingTheBottomWithAnotherControl()
         {
             var control = FindComponent<LadderMoveControl>("Player_1");
             var ladder = FindComponent<Ladder>("Ladder");
@@ -320,7 +320,7 @@ namespace Unity.TinyCharacterController.Test
             manualControl.MovePriority = 10;
             manualControl.MoveVelocity = new Vector3(0, -1, 0);
 
-            yield return null; // 実行順の問題で二回必要
+            yield return null; // Needed twice because of execution order
             yield return null;
 
             yield return new WaitForSeconds(2f);
@@ -331,7 +331,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator 他のControlで上に到達した場合もTopPointへ移動する()
+        public IEnumerator MoveToTopPointEvenWhenReachingTheTopWithAnotherControl()
         {
             var control = FindComponent<LadderMoveControl>("Player_1");
             var ladder = FindComponent<Ladder>("Ladder");
@@ -346,7 +346,7 @@ namespace Unity.TinyCharacterController.Test
             manualControl.MovePriority = 10;
             manualControl.MoveVelocity = new Vector3(0, 1, 0);
 
-            yield return null; // 実行順の問題で二回必要
+            yield return null; // Needed twice because of execution order
             yield return null;
 
             yield return new WaitForSeconds(2f);
@@ -357,7 +357,7 @@ namespace Unity.TinyCharacterController.Test
         }
 
         [UnityTest]
-        public IEnumerator ステップの移動時間はStepTimeに依存する()
+        public IEnumerator StepMovementTimeDependsOnStepTime()
         {
             var control = FindComponent<LadderMoveControl>("Player_1");
             var ladder = FindComponent<Ladder>("Ladder");
